@@ -27,6 +27,7 @@ export class PublishQuestionHandler implements ICommandHandler<PublishQuestionCo
     }
 
     question.published = command.dto.published;
+    question.updatedAt = new Date();
     
     await this.repository.save(question);
     return true;

@@ -23,7 +23,7 @@ export class QuizQuestion {
   @CreateDateColumn({ type: 'timestamp' })
   createdAt: Date;
 
-  @Column({ type: 'timestamp', nullable: true, default: null })
+  @UpdateDateColumn({ type: 'timestamp', nullable: true })
   updatedAt: Date | null;
 
   static create(dto: { body: string; correctAnswers: string[] }): QuizQuestion {

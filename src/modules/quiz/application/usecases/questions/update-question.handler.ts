@@ -22,6 +22,7 @@ export class UpdateQuestionHandler implements ICommandHandler<UpdateQuestionComm
 
     question.body = command.dto.body;
     question.correctAnswers = command.dto.correctAnswers;
+    question.updatedAt = new Date();
     
     await this.repository.save(question);
     return true;
