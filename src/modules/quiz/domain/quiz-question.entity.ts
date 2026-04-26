@@ -31,6 +31,7 @@ export class QuizQuestion {
     question.body = dto.body;
     question.correctAnswers = dto.correctAnswers;
     question.published = false;
+    question.updatedAt = null;
     return question;
   }
 }

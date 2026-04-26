@@ -38,6 +38,7 @@ export class QuizGameRepository {
       relations: [
         'firstPlayerProgress',
         'firstPlayerProgress.user',
+        'questions',
       ],
     });
   }

@@ -1,0 +1,577 @@
+Обратная связь
+
+Back-end
+FAQ
+avatar
+
+Затраченное время
+
+04:00:00
+
+Программа лояльности
+Правила обучения
+Инфопанель
+Активность
+Календарь
+Домашние задания
+Видеоконтент
+Уроки
+Экзамены
+Респекты
+Prosobesim
+Английский язык
+DevClub
+Карьерный бустер
+Offerheap
+Help2Debug
+
+Назад к ДЗ
+Выбери документацию
+h25
+Filter by tag
+h25 API - V1
+ h25
+OAS3
+Add Quiz Controller
+
+Authorize
+Auth
+
+
+POST
+/hometask_25/api/auth/login
+Try login user to the system
+
+POST
+/hometask_25/api/auth/password-recovery
+Password recovery via Email confirmation. Email should be sent with RecoveryCode inside
+
+POST
+/hometask_25/api/auth/new-password
+Confirm Password recovery
+
+POST
+/hometask_25/api/auth/refresh-token
+Generate new pair of access and refresh tokens (in cookie client must send correct refreshToken that will be revoked after refreshing) Device LastActiveDate should be overrode by issued Date of new refresh token
+
+
+POST
+/hometask_25/api/auth/registration-confirmation
+Confirm registration
+
+POST
+/hometask_25/api/auth/registration
+Registration in the system. Email with confirmation code will be send to passed email address
+
+POST
+/hometask_25/api/auth/registration-email-resending
+Resend confirmation registration Email if user exists
+
+POST
+/hometask_25/api/auth/logout
+In cookie client must send correct refreshToken that will be revoked
+
+
+GET
+/hometask_25/api/auth/me
+Get information about current user
+
+Blogs
+
+
+GET
+/hometask_25/api/blogs
+Returns blogs with paging
+
+GET
+/hometask_25/api/blogs/{blogId}/posts
+Returns all posts for specified blog
+
+GET
+/hometask_25/api/blogs/{id}
+Returns blog by id
+Comments
+
+
+PUT
+/hometask_25/api/comments/{commentId}/like-status
+Make like/unlike/dislike/undislike operation
+
+
+PUT
+/hometask_25/api/comments/{commentId}
+Update existing comment by id with InputModel
+
+
+DELETE
+/hometask_25/api/comments/{commentId}
+Delete comment specified by id
+
+
+GET
+/hometask_25/api/comments/{id}
+Return comment by id
+PairQuizGame
+
+
+GET
+/hometask_25/api/pair-game-quiz/pairs/my-current
+Returns current unfinished user game
+
+Parameters
+Try it out
+No parameters
+
+Responses
+Code	Description	Links
+200
+Returns current pair in which current user is taking part
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "id": "string",
+  "firstPlayerProgress": {
+    "answers": [
+      {
+        "questionId": "string",
+        "answerStatus": "Correct",
+        "addedAt": "2026-04-26T13:03:23.543Z"
+      }
+    ],
+    "player": {
+      "id": "string",
+      "login": "string"
+    },
+    "score": 0
+  },
+  "secondPlayerProgress": {
+    "answers": [
+      {
+        "questionId": "string",
+        "answerStatus": "Correct",
+        "addedAt": "2026-04-26T13:03:23.543Z"
+      }
+    ],
+    "player": {
+      "id": "string",
+      "login": "string"
+    },
+    "score": 0
+  },
+  "questions": [
+    {
+      "id": "string",
+      "body": "string"
+    }
+  ],
+  "status": "PendingSecondPlayer",
+  "pairCreatedDate": "2026-04-26T13:03:23.543Z",
+  "startGameDate": "2026-04-26T13:03:23.543Z",
+  "finishGameDate": "2026-04-26T13:03:23.543Z"
+}
+No links
+401
+Unauthorized
+
+No links
+404
+If no active pair for current user
+
+No links
+
+GET
+/hometask_25/api/pair-game-quiz/pairs/{id}
+Returns game by id
+
+Parameters
+Try it out
+Name	Description
+id *
+string
+(path)
+id
+Responses
+Code	Description	Links
+200
+Returns pair by id
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "id": "string",
+  "firstPlayerProgress": {
+    "answers": [
+      {
+        "questionId": "string",
+        "answerStatus": "Correct",
+        "addedAt": "2026-04-26T13:03:23.546Z"
+      }
+    ],
+    "player": {
+      "id": "string",
+      "login": "string"
+    },
+    "score": 0
+  },
+  "secondPlayerProgress": {
+    "answers": [
+      {
+        "questionId": "string",
+        "answerStatus": "Correct",
+        "addedAt": "2026-04-26T13:03:23.546Z"
+      }
+    ],
+    "player": {
+      "id": "string",
+      "login": "string"
+    },
+    "score": 0
+  },
+  "questions": [
+    {
+      "id": "string",
+      "body": "string"
+    }
+  ],
+  "status": "PendingSecondPlayer",
+  "pairCreatedDate": "2026-04-26T13:03:23.546Z",
+  "startGameDate": "2026-04-26T13:03:23.546Z",
+  "finishGameDate": "2026-04-26T13:03:23.546Z"
+}
+No links
+400
+If id has invalid format
+
+Media type
+
+text/plain
+Example Value
+Schema
+{
+  "errorsMessages": [
+    {
+      "message": "string",
+      "field": "string"
+    }
+  ]
+}
+No links
+401
+Unauthorized
+
+No links
+403
+If current user tries to get pair in which user is not participant
+
+No links
+404
+If game not found
+
+No links
+
+POST
+/hometask_25/api/pair-game-quiz/pairs/connection
+Connect current user to existing random pending pair or create new pair which will be waiting second player
+
+Parameters
+Try it out
+No parameters
+
+Responses
+Code	Description	Links
+200
+Returns started existing pair or new pair with status "PendingSecondPlayer"
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "id": "string",
+  "firstPlayerProgress": {
+    "answers": [
+      {
+        "questionId": "string",
+        "answerStatus": "Correct",
+        "addedAt": "2026-04-26T13:03:23.549Z"
+      }
+    ],
+    "player": {
+      "id": "string",
+      "login": "string"
+    },
+    "score": 0
+  },
+  "secondPlayerProgress": {
+    "answers": [
+      {
+        "questionId": "string",
+        "answerStatus": "Correct",
+        "addedAt": "2026-04-26T13:03:23.549Z"
+      }
+    ],
+    "player": {
+      "id": "string",
+      "login": "string"
+    },
+    "score": 0
+  },
+  "questions": [
+    {
+      "id": "string",
+      "body": "string"
+    }
+  ],
+  "status": "PendingSecondPlayer",
+  "pairCreatedDate": "2026-04-26T13:03:23.549Z",
+  "startGameDate": "2026-04-26T13:03:23.549Z",
+  "finishGameDate": "2026-04-26T13:03:23.549Z"
+}
+No links
+401
+Unauthorized
+
+No links
+403
+If current user is already participating in active pair
+
+No links
+
+POST
+/hometask_25/api/pair-game-quiz/pairs/my-current/answers
+Send answer for next not answered question in active pair
+
+Parameters
+Try it out
+No parameters
+
+Request body
+
+application/json
+Example Value
+Schema
+{
+  "answer": "string"
+}
+Responses
+Code	Description	Links
+200
+Returns answer result
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "questionId": "string",
+  "answerStatus": "Correct",
+  "addedAt": "2026-04-26T13:03:23.552Z"
+}
+No links
+401
+Unauthorized
+
+No links
+403
+If current user is not inside active pair or user is in active pair but has already answered to all questions
+
+No links
+Posts
+
+
+PUT
+/hometask_25/api/posts/{postId}/like-status
+Make like/unlike/dislike/undislike operation
+
+
+GET
+/hometask_25/api/posts/{postId}/comments
+Returns comments for specified post
+
+POST
+/hometask_25/api/posts/{postId}/comments
+Create new comment
+
+
+GET
+/hometask_25/api/posts
+Returns all posts
+
+GET
+/hometask_25/api/posts/{id}
+Return post by id
+SecurityDevices
+
+
+GET
+/hometask_25/api/security/devices
+Returns all devices with active sessions for current user
+
+
+DELETE
+/hometask_25/api/security/devices
+Terminate all other (exclude current) device's sessions
+
+
+DELETE
+/hometask_25/api/security/devices/{deviceId}
+Terminate specified device session
+
+Testing
+
+
+DELETE
+/hometask_25/api/testing/all-data
+Clear database: delete all data from all tables/collections
+
+Schemas
+APIErrorResult
+FieldError
+Paginator<h03.BlogViewModel>
+Paginator<h11.CommentViewModel>
+Paginator<h12.PostViewModel>
+h03.BlogViewModel
+h04.SortDirections
+h05.db.LoginInputModel
+h05.db.UserInputModel
+h06.db.CommentInputModel
+h06.db.CommentatorInfo
+h06.db.LoginSuccessViewModel
+h06.db.MeViewModel
+h07.RegistrationConfirmationCodeModel
+h07.RegistrationEmailResending
+h09.DeviceViewModel
+h10.NewPasswordRecoveryInputModel
+h10.PasswordRecoveryInputModel
+h11.CommentViewModel
+h11.LikeInputModel
+h11.LikeStatus
+h11.LikesInfoViewModel
+h12.ExtendedLikesInfoViewModel
+h12.LikeDetailsViewModel
+h12.PostViewModel{
+id*	[...]
+title*	[...]
+shortDescription*	[...]
+content*	[...]
+blogId*	[...]
+blogName*	[...]
+createdAt	[...]
+extendedLikesInfo	h12.ExtendedLikesInfoViewModel{...}
+}
+h25.AnswerInputModel{
+answer*	string
+}
+h25.AnswerStatusesstring
+Enum:
+[ Correct, Incorrect ]
+h25.AnswerViewModel{
+questionId*	string
+answerStatus	h25.AnswerStatusesstring
+Enum:
+[ Correct, Incorrect ]
+addedAt	string($date-time)
+}
+h25.GamePairViewModel{
+id*	string
+Id of pair
+
+firstPlayerProgress*	h25.GamePlayerProgressViewModel{
+answers*	[h25.AnswerViewModel{
+questionId*	string
+answerStatus	h25.AnswerStatusesstring
+Enum:
+[ Correct, Incorrect ]
+addedAt	string($date-time)
+}]
+player*	h25.PlayerViewModel{
+id*	string
+login*	string
+}
+score	integer($int32)
+Player score
+
+}
+secondPlayerProgress	h25.GamePlayerProgressViewModel{
+answers*	[h25.AnswerViewModel{
+questionId*	string
+answerStatus	h25.AnswerStatusesstring
+Enum:
+Array [ 2 ]
+addedAt	string($date-time)
+}]
+player*	h25.PlayerViewModel{
+id*	string
+login*	string
+}
+score	integer($int32)
+Player score
+
+}
+questions	[
+nullable: true
+Questions for both players (can be null if second player haven't connected yet)
+
+h25.QuestionViewModel{
+id*	string
+body*	string
+Here is the question itself
+
+}]
+status	h25.GameStatusesstring
+Enum:
+[ PendingSecondPlayer, Active, Finished ]
+pairCreatedDate	string($date-time)
+Date when first player initialized the pair
+
+startGameDate	string($date-time)
+nullable: true
+Game starts immediately after second player connection to this pair
+
+finishGameDate	string($date-time)
+nullable: true
+Game finishes immediately after both players have answered all the questions
+
+}
+h25.GamePlayerProgressViewModel{
+answers*	[h25.AnswerViewModel{
+questionId*	string
+answerStatus	h25.AnswerStatusesstring
+Enum:
+Array [ 2 ]
+addedAt	string($date-time)
+}]
+player*	h25.PlayerViewModel{
+id*	string
+login*	string
+}
+score	integer($int32)
+Player score
+
+}
+h25.GameStatusesstring
+Enum:
+[ PendingSecondPlayer, Active, Finished ]
+h25.PlayerViewModel{
+id*	string
+login*	string
+}
+h25.QuestionViewModel{
+id*	string
+body*	string
+Here is the question itself
+
+}

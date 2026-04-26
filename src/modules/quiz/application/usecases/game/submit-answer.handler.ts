@@ -42,7 +42,7 @@ export class SubmitAnswerHandler implements ICommandHandler<SubmitAnswerCommand>
     console.log('correctAnswers type:', typeof question.correctAnswers);
     // 4. Validate answer
     const isCorrect = question.correctAnswers.some(
-      (ans) => ans.toLowerCase() === dto.answer.toLowerCase(),
+      (ans) => ans && ans.toLowerCase() === (dto.answer || '').toLowerCase(),
     );
 
     // 5. Create answer

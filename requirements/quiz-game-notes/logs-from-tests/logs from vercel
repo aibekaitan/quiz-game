@@ -1,0 +1,10 @@
+2026-04-26 12:44:19.637 [info] question: {"id":"eef750b4-cdd2-4222-b792-d3ce211e730d","body":"question body0 456513","correctAnswers":["correct answer"],"published":true,"createdAt":"2026-04-26T12:44:16.703Z","updatedAt":null}
+2026-04-26 12:44:19.637 [info] correctAnswers: [ 'correct answer' ]
+2026-04-26 12:44:19.637 [info] correctAnswers type: object
+2026-04-26 12:44:19.640 [error] [31m[Nest] 4  - [39m04/26/2026, 12:44:19 PM [31m  ERROR[39m [38;5;3m[ExceptionsHandler] [39mTypeError: Cannot read properties of undefined (reading 'toLowerCase')
+    at [90m/var/task/[39msrc/modules/quiz/application/usecases/game/submit-answer.handler.js:49:98
+    at Array.some (<anonymous>)
+    at SubmitAnswerHandler.execute [90m(/var/task/[39msrc/modules/quiz/application/usecases/game/submit-answer.handler.js:49:51[90m)[39m
+[90m    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)[39m
+    at async [90m/var/task/[39mnode_modules/[4m.pnpm[24m/@nestjs+core@11.1.13_@nestjs+common@11.1.13_class-transformer@0.5.1_class-validator@0.1_4eb51b33436697b7489bc341bd7dd41e/node_modules/[4m@nestjs/core[24m/router/router-execution-context.js:46:28
+    at async [90m/var/task/[39mnode_modules/[4m.pnpm[24m/@nestjs+core@11.1.13_@nestjs+common@11.1.13_class-transformer@0.5.1_class-validator@0.1_4eb51b33436697b7489bc341bd7dd41e/node_modules/[4m@nestjs/core[24m/router/router-proxy.js:9:17

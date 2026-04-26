@@ -1,5 +1,6 @@
 import { AnswerStatus } from '../../domain/quiz-player-progress.entity';
 import { GameStatus } from '../../domain/quiz-game.entity';
+import { IsNotEmpty, IsString } from 'class-validator';
 
 export class AnswerViewModel {
   questionId: string;
@@ -33,5 +34,7 @@ export class GameViewModel {
 }
 
 export class AnswerInputModel {
+  @IsString()
+  @IsNotEmpty()
   answer: string;
 }
