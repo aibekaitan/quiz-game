@@ -37,7 +37,9 @@ export class SubmitAnswerHandler implements ICommandHandler<SubmitAnswerCommand>
     // 3. Determine current question
     const currentQuestionIndex = progress.answers.length;
     const question = game.questions![currentQuestionIndex];
-
+    console.log('question:', JSON.stringify(question));
+    console.log('correctAnswers:', question.correctAnswers);
+    console.log('correctAnswers type:', typeof question.correctAnswers);
     // 4. Validate answer
     const isCorrect = question.correctAnswers.some(
       (ans) => ans.toLowerCase() === dto.answer.toLowerCase(),

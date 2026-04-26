@@ -14,7 +14,8 @@ export class CreateQuestionHandler implements ICommandHandler<CreateQuestionComm
   async execute(command: CreateQuestionCommand) {
     const question = QuizQuestion.create(command.dto);
     const saved = await this.repository.save(question);
-    
+
+
     return {
       id: saved.id,
       body: saved.body,
