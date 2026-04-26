@@ -56,6 +56,11 @@ export class SubmitAnswerHandler implements ICommandHandler<SubmitAnswerCommand>
     }
 
     // 6. Check if both players finished
+    console.log('=== FINISH CHECK ===');
+    console.log('current player answers:', progress.answers.length);
+    console.log('other player answers:', otherProgress.answers.length);
+    console.log('game status:', game.status);
+
     if (progress.answers.length === 5 && otherProgress.answers.length === 5) {
       game.status = GameStatus.FINISHED;
       game.finishGameDate = new Date();
