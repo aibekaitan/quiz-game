@@ -20,7 +20,9 @@ export class QuizGameQueryRepository {
         : null,
       questions:
         game.questions && game.questions.length > 0
-          ? game.questions.map((q) => ({ id: q.id, body: q.body }))
+          ? game.questions
+              .sort((a, b) => a.id.localeCompare(b.id))
+              .map((q) => ({ id: q.id, body: q.body }))
           : null,
       status: game.status,
       pairCreatedDate: game.pairCreatedDate.toISOString(),
