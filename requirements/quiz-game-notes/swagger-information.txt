@@ -1,0 +1,595 @@
+Обратная связь
+
+Back-end
+FAQ
+avatar
+
+Затраченное время
+
+00:00:00
+
+Программа лояльности
+Правила обучения
+Инфопанель
+Активность
+Календарь
+Домашние задания
+Видеоконтент
+Уроки
+Экзамены
+Респекты
+Prosobesim
+Английский язык
+DevClub
+Карьерный бустер
+Offerheap
+Help2Debug
+
+Назад к ДЗ
+Выбери документацию
+h25.sa
+Filter by tag
+h25.sa API - V1
+ h25.sa
+OAS3
+Added CRUD for quiz questions
+
+Authorize
+Blogs
+
+
+GET
+/hometask_25/api/sa/blogs
+Returns all blogs with paging
+
+
+POST
+/hometask_25/api/sa/blogs
+Create new blog
+
+
+PUT
+/hometask_25/api/sa/blogs/{id}
+Update existing Blog by id with InputModel
+
+
+DELETE
+/hometask_25/api/sa/blogs/{id}
+Delete blog specified by id
+
+
+POST
+/hometask_25/api/sa/blogs/{blogId}/posts
+Create new post for specific blog
+
+
+GET
+/hometask_25/api/sa/blogs/{blogId}/posts
+Returns posts for blog with paging and sorting
+
+
+PUT
+/hometask_25/api/sa/blogs/{blogId}/posts/{postId}
+Update existing post by id with InputModel
+
+
+DELETE
+/hometask_25/api/sa/blogs/{blogId}/posts/{postId}
+Delete post specified by id
+
+QuizQuestions
+
+
+GET
+/hometask_25/api/sa/quiz/questions
+Returns all questions with pagination and filtering
+
+Parameters
+Try it out
+Name	Description
+bodySearchTerm
+string
+(query)
+bodySearchTerm
+publishedStatus
+string
+(query)
+default value: "all"
+
+Available values : all, published, notPublished
+
+
+--
+sortBy
+string
+(query)
+Default value : createdAt
+
+createdAt
+sortDirection
+string
+(query)
+Default value: desc
+
+Available values : asc, desc
+
+
+--
+pageNumber
+integer($int32)
+(query)
+pageNumber is number of portions that should be returned
+
+Default value : 1
+
+1
+pageSize
+integer($int32)
+(query)
+pageSize is portions size that should be returned
+
+Default value : 10
+
+10
+Responses
+Code	Description	Links
+200
+Success
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "pagesCount": 0,
+  "page": 0,
+  "pageSize": 0,
+  "totalCount": 0,
+  "items": [
+    {
+      "id": "string",
+      "body": "string",
+      "correctAnswers": [
+        "string"
+      ],
+      "published": false,
+      "createdAt": "2026-04-25T14:39:19.924Z",
+      "updatedAt": "2026-04-25T14:39:19.924Z"
+    }
+  ]
+}
+No links
+401
+Unauthorized
+
+No links
+
+POST
+/hometask_25/api/sa/quiz/questions
+Create question
+
+Parameters
+Try it out
+No parameters
+
+Request body
+
+application/json
+Example Value
+Schema
+{
+  "body": "stringstri",
+  "correctAnswers": [
+    "string"
+  ]
+}
+Responses
+Code	Description	Links
+201
+Created
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "id": "string",
+  "body": "string",
+  "correctAnswers": [
+    "string"
+  ],
+  "published": false,
+  "createdAt": "2026-04-25T14:39:19.927Z",
+  "updatedAt": "2026-04-25T14:39:19.927Z"
+}
+No links
+400
+If the inputModel has incorrect values
+
+Media type
+
+text/plain
+Example Value
+Schema
+{
+  "errorsMessages": [
+    {
+      "message": "string",
+      "field": "string"
+    }
+  ]
+}
+No links
+401
+Unauthorized
+
+No links
+
+DELETE
+/hometask_25/api/sa/quiz/questions/{id}
+Delete question
+
+Parameters
+Try it out
+Name	Description
+id *
+string
+(path)
+id
+Responses
+Code	Description	Links
+204
+No Content
+
+No links
+401
+Unauthorized
+
+No links
+404
+Not Found
+
+No links
+
+PUT
+/hometask_25/api/sa/quiz/questions/{id}
+Update question
+
+Parameters
+Try it out
+Name	Description
+id *
+string
+(path)
+id
+Request body
+
+application/json
+Example Value
+Schema
+{
+  "body": "stringstri",
+  "correctAnswers": [
+    "string"
+  ]
+}
+Responses
+Code	Description	Links
+204
+No Content
+
+No links
+400
+If the inputModel has incorrect values or property 'correctAnswers' are not passed but property 'published' is true
+
+Media type
+
+text/plain
+Example Value
+Schema
+{
+  "errorsMessages": [
+    {
+      "message": "string",
+      "field": "string"
+    }
+  ]
+}
+No links
+401
+Unauthorized
+
+No links
+404
+Not Found
+
+No links
+
+PUT
+/hometask_25/api/sa/quiz/questions/{id}/publish
+Publish/unpublish question
+
+Parameters
+Try it out
+Name	Description
+id *
+string
+(path)
+id
+Request body
+
+application/json
+Example Value
+Schema
+{
+  "published": true
+}
+Responses
+Code	Description	Links
+204
+No Content
+
+No links
+400
+If the inputModel has incorrect values or specified question doesn't have correct answers
+
+Media type
+
+text/plain
+Example Value
+Schema
+{
+  "errorsMessages": [
+    {
+      "message": "string",
+      "field": "string"
+    }
+  ]
+}
+No links
+401
+Unauthorized
+
+No links
+Users
+
+
+GET
+/hometask_25/api/sa/users
+Returns all users
+
+Parameters
+Try it out
+Name	Description
+sortBy
+string
+(query)
+Default value : createdAt
+
+createdAt
+sortDirection
+string
+(query)
+Default value: desc
+
+Available values : asc, desc
+
+
+--
+pageNumber
+integer($int32)
+(query)
+pageNumber is number of portions that should be returned
+
+Default value : 1
+
+1
+pageSize
+integer($int32)
+(query)
+pageSize is portions size that should be returned
+
+Default value : 10
+
+10
+searchLoginTerm
+string
+(query)
+Search term for user Login: Login should contains this term in any position
+
+Default value : null
+
+searchLoginTerm
+searchEmailTerm
+string
+(query)
+Search term for user Email: Email should contains this term in any position
+
+Default value : null
+
+searchEmailTerm
+Responses
+Code	Description	Links
+200
+Success
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "pagesCount": 0,
+  "page": 0,
+  "pageSize": 0,
+  "totalCount": 0,
+  "items": [
+    {
+      "id": "string",
+      "login": "string",
+      "email": "string",
+      "createdAt": "2026-04-25T14:39:19.936Z"
+    }
+  ]
+}
+No links
+401
+Unauthorized
+
+No links
+
+POST
+/hometask_25/api/sa/users
+Add new user to the system
+
+Parameters
+Try it out
+No parameters
+
+Request body
+
+application/json
+Data for constructing new user
+
+Example Value
+Schema
+{
+  "login": "K2p8EcOT8A",
+  "password": "string",
+  "email": "example@example.dev"
+}
+Responses
+Code	Description	Links
+201
+Returns the newly created user
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "id": "string",
+  "login": "string",
+  "email": "string",
+  "createdAt": "2026-04-25T14:39:19.939Z"
+}
+No links
+400
+If the inputModel has incorrect values.
+
+Note: If the error should be in the BLL, for example, "the email address is not unique", do not try to mix this error with input validation errors in the middleware, just return one element in the errors array
+
+Media type
+
+text/plain
+Example Value
+Schema
+{
+  "errorsMessages": [
+    {
+      "message": "string",
+      "field": "string"
+    }
+  ]
+}
+No links
+401
+Unauthorized
+
+No links
+
+DELETE
+/hometask_25/api/sa/users/{id}
+Delete user specified by id
+
+Parameters
+Try it out
+Name	Description
+id *
+string
+(path)
+User id
+
+id
+Responses
+Code	Description	Links
+204
+No Content
+
+No links
+401
+Unauthorized
+
+No links
+404
+If specified user is not exists
+
+No links
+
+Schemas
+APIErrorResult
+FieldError
+Paginator<h03.BlogViewModel>
+Paginator<h05.db.UserViewModel>
+Paginator<h12.PostViewModel>
+Paginator<h25.sa.QuestionViewModel>
+h02.db.BlogInputModel
+h02.db.BlogPostInputModel
+h03.BlogViewModel
+h04.SortDirections
+h05.db.UserInputModel
+h05.db.UserViewModel
+h11.LikeStatus
+h12.ExtendedLikesInfoViewModel
+h12.LikeDetailsViewModel
+h12.PostViewModel{
+id*	[...]
+title*	[...]
+shortDescription*	[...]
+content*	[...]
+blogId*	[...]
+blogName*	[...]
+createdAt	[...]
+extendedLikesInfo	h12.ExtendedLikesInfoViewModel{...}
+}
+h25.sa.PublishInputModel{
+published	boolean
+True if question is completed and can be used in the Quiz game
+
+}
+h25.sa.PublishedStatusesstring
+Enum:
+[ all, published, notPublished ]
+h25.sa.QuestionInputModel{
+body*	string
+maxLength: 500
+minLength: 10
+correctAnswers*	[
+All variants of possible correct answers for current questions Examples: ['6', 'six', 'шесть', 'дофига'] In Postgres save this data in JSON column
+
+string]
+}
+h25.sa.QuestionViewModel{
+id*	string
+body*	string
+Text of question, for example: How many continents are there?
+
+correctAnswers*	[
+All variants of possible correct answers for current questions Examples: ['6', 'six', 'шесть', 'дофига'] In Postgres save this data in JSON column
+
+string]
+published	boolean
+default: false
+If question is completed and can be used in the Quiz game
+
+createdAt*	string($date-time)
+updatedAt	string($date-time)
+nullable: true
+}

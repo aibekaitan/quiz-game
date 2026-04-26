@@ -1,0 +1,690 @@
+Test Report
+Started: 2026-04-25 14:30:24
+Suites (1)
+0 passed
+1 failed
+0 pending
+Tests (39)
+10 passed
+29 failed
+0 pending
+/home/node/dist/auto-test-checker/dist/tests/jest/back/back-v3-25-homework-01/quiz-baze-functionality.spec.js
+49.364s
+Homework 25 > Quiz questions CRUD by SA
+DELETE -> "/testing/all-data": should remove all data; status 204;
+passed
+0.475s
+Homework 25 > Quiz questions CRUD by SA
+POST -> "/sa/quiz/questions": should create new question; status 201; content: created question; used additional methods: GET => /sa/quiz/questions;
+failed
+0.273s
+Error:
+
+Expected: success response
+
+Received: Request failed with status code 404
+
+Config:
+ url: sa/quiz/questions?pageSize=50
+ method: get
+ response status: 404
+ request body: undefined
+ response data: {"message":"Cannot GET /sa/quiz/questions?pageSize=50","error":"Not Found","statusCode":404}
+
+
+    at handleTestError (/home/node/dist/auto-test-checker/src/tests/jest/back/testHelpers/handleTestError.ts:24:25)
+    at /home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/SA/questions-crud.ts:113:24
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at Object.<anonymous> (/home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/SA/questions-crud.ts:112:46)
+Homework 25 > Quiz questions CRUD by SA
+DELETE -> "/testing/all-data": should remove all data; status 204;
+passed
+0.326s
+Homework 25 > Quiz questions CRUD by SA
+GET -> "/sa/quiz/questions": should return status 200; content: questions array with pagination; used additional methods: POST -> /sa/quiz/questions;
+failed
+0.227s
+Error:
+
+Expected: success response
+
+Received: Request failed with status code 404
+
+Config:
+ url: sa/quiz/questions
+ method: post
+ response status: 404
+ request body: {"body":"question body01","correctAnswers":["correct1"]}
+ response data: {"message":"Cannot POST /sa/quiz/questions","error":"Not Found","statusCode":404}
+
+
+    at handleTestError (/home/node/dist/auto-test-checker/src/tests/jest/back/testHelpers/handleTestError.ts:24:25)
+    at /home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/SA/questions-crud.ts:141:24
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at Object.<anonymous> (/home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/SA/questions-crud.ts:140:37)
+Homework 25 > Quiz questions CRUD by SA
+PUT -> "/sa/quiz/questions/:id": should update quiz question; status 204; used additional methods: POST -> /sa/quiz/questions, GET -> /sa/quiz/questions;
+failed
+0.22s
+Error:
+
+Expected: success response
+
+Received: Request failed with status code 404
+
+Config:
+ url: sa/quiz/questions
+ method: post
+ response status: 404
+ request body: {"body":"question body 431551","correctAnswers":["correct answer 1, correct answer 2"]}
+ response data: {"message":"Cannot POST /sa/quiz/questions","error":"Not Found","statusCode":404}
+
+
+    at handleTestError (/home/node/dist/auto-test-checker/src/tests/jest/back/testHelpers/handleTestError.ts:24:25)
+    at /home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/SA/questions-crud.ts:173:41
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at Object.<anonymous> (/home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/SA/questions-crud.ts:171:48)
+Homework 25 > Quiz questions CRUD by SA
+DELETE -> "/sa/quiz/questions/:id": should delete question by id; status 204; used additional methods: POST -> /sa/quiz/questions, GET -> /sa/quiz/questions;
+failed
+0.22s
+Error:
+
+Expected: success response
+
+Received: Request failed with status code 404
+
+Config:
+ url: sa/quiz/questions
+ method: post
+ response status: 404
+ request body: {"body":"question body 431771","correctAnswers":["correct answer 1, correct answer 2"]}
+ response data: {"message":"Cannot POST /sa/quiz/questions","error":"Not Found","statusCode":404}
+
+
+    at handleTestError (/home/node/dist/auto-test-checker/src/tests/jest/back/testHelpers/handleTestError.ts:24:25)
+    at /home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/SA/questions-crud.ts:223:41
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at Object.<anonymous> (/home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/SA/questions-crud.ts:221:41)
+Homework 25 > Quiz questions CRUD by SA
+PUT -> "/sa/quiz/questions/:id/publish": should update publish status of quiz question; status 204; used additional methods: POST -> /sa/quiz/questions, GET -> /sa/quiz/questions;
+failed
+0.381s
+Error:
+
+Expected: success response
+
+Received: Request failed with status code 404
+
+Config:
+ url: sa/quiz/questions
+ method: post
+ response status: 404
+ request body: {"body":"question body 431991","correctAnswers":["correct answer 1, correct answer 2"]}
+ response data: {"message":"Cannot POST /sa/quiz/questions","error":"Not Found","statusCode":404}
+
+
+    at handleTestError (/home/node/dist/auto-test-checker/src/tests/jest/back/testHelpers/handleTestError.ts:24:25)
+    at /home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/SA/questions-crud.ts:258:41
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at Object.<anonymous> (/home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/SA/questions-crud.ts:256:48)
+Homework 25 > Quiz questions CRUD by SA
+GET, POST, PUT, DELETE -> "/sa/quiz/questions": should return error if auth credentials is incorrect; status 401; used additional methods: POST -> /sa/quiz/questions;
+failed
+0.22s
+Error:
+
+Expected: success response
+
+Received: Request failed with status code 404
+
+Config:
+ url: sa/quiz/questions
+ method: post
+ response status: 404
+ request body: {"body":"question body 432373","correctAnswers":["correct answer 1, correct answer 2"]}
+ response data: {"message":"Cannot POST /sa/quiz/questions","error":"Not Found","statusCode":404}
+
+
+    at handleTestError (/home/node/dist/auto-test-checker/src/tests/jest/back/testHelpers/handleTestError.ts:24:25)
+    at /home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/SA/questions-crud.ts:294:35
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at Object.<anonymous> (/home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/SA/questions-crud.ts:293:31)
+Homework 25 > Quiz questions CRUD by SA
+PUT, DELETE -> "/sa/quiz/questions/:id": should return error if :id from uri param not found; status 404;
+passed
+0.799s
+Homework 25 > Quiz questions CRUD by SA > Questions body validation
+POST -> "/sa/quiz/questions": should return error if passed body is incorrect; status 400;
+failed
+0.223s
+Error:
+
+Tested endpoint: sa/quiz/questions
+
+Tested method: POST
+
+Expected status: 400
+
+Received status: 404
+
+Passed body: {"body":"length_1001-f60ohVv5JGi6YrffYqmZNvpeS81tgDtWoVBTM0rTdlev2l4wzSq5CS54cCsRa7KIkcqw0w9PDWU2ohhSwNrFn7w4Ft6LMJ2dg2BMp1cSmzbanmfx6Fk04MKPmLVLL4hclHzdvJG8PZaWjoVARzz3NEAjNomZEf8JUcPC1YIOfZ9d3dQHyMmNuYw4gQXdKTPEJKscx0HDlhjMevSXPcO9LzD3s3XdAdK78bBBhxq1LHvyzPrBWAm4CcTqvjFc7S7ZwgpMUpyUv5jQqSecp0eC32nH0oOfso70XWwNm9JTvgTlUGwLvlGqqFN6dm9Q1RRjSkm2ug3bGs1pUj5DyQkLf7MQ8N2HZF7DBibN5HcIdcDO5FkAvh34k2qx1gzzKLlqE06wU8sBnNSvbDHe08oSw9bRALQZFADmEoccJ4XYjUgkEueIZUv0gUkDLd2Ur68HBbepUPfLWAwAEl1qqbCRhgUs7O0ajGnLFT040Lf8eZLEfLAxcvlcbZjzK8IIqn5gV96XkMGNCDul04Jj0UK2CBt0ul4UPqdEhG0afADNA7v1wU8ySbkuKlH5D92Z4zP9J7N9G664067iM7KNr1x8RJf0CeBKIXTTjf2iwE3bqetEVSgdK95XuJb5lnuIpo1yt7T9cVVNksmxmH4EUp9XxFwafjlr5CffaY1Ni1ybyKvnxQUOv6o9txu4FIcK9qrlsA8bgprU0z3774VYPTfcmrjPR6H6y6Dx777A1jLTy4e4ifpzYBa3gjtUygW2gbcwAXcbsDPOoUTZjemr3nQ7qBwtZCa84XHuXa7RfLPRRLzZ6OKOGlB0Vwe35pUkxK3z6FdIO1baFv0xAzcfpCwTeVzsAnugu0mOS8C0q9pHqevSDPx50eCYp67Z0hGcPtHDbodwy4iAqm06lxLfGCDJpOkQD8iZsDqIDbKv3WvwDk6sCelk8KCHY62vRHs5E0txhAezHnCrq0BJQK3wCDwRyPk7FZtrK","correctAnswers":["correct"]}
+
+Expected data: { errorsMessages: [{ message: Any<String>, field: "body" }] }
+
+Received data: {"message":"Cannot POST /sa/quiz/questions","error":"Not Found","statusCode":404}
+
+    at performTestsWithIncorrectBody (/home/node/dist/auto-test-checker/src/tests/jest/back/testHelpers/performTestsWithIncorrectBody.ts:42:22)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at Object.<anonymous> (/home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/SA/questions-body-validation.ts:44:7)
+Homework 25 > Quiz questions CRUD by SA > Questions body validation
+PUT -> "/sa/quiz/questions/:id": should return error if passed body is incorrect; status 400;
+failed
+0.237s
+Error:
+
+Expected: success response
+
+Received: Request failed with status code 404
+
+Config:
+ url: sa/quiz/questions
+ method: post
+ response status: 404
+ request body: {"body":"question body 433617","correctAnswers":["correct answer 1, correct answer 2"]}
+ response data: {"message":"Cannot POST /sa/quiz/questions","error":"Not Found","statusCode":404}
+
+
+    at handleTestError (/home/node/dist/auto-test-checker/src/tests/jest/back/testHelpers/handleTestError.ts:24:25)
+    at /home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/SA/questions-body-validation.ts:64:41
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at Object.<anonymous> (/home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/SA/questions-body-validation.ts:62:48)
+Homework 25 > Quiz questions CRUD by SA > Questions body validation
+PUT -> "/sa/quiz/questions/:id/publish": should return error if passed body is incorrect; status 400;
+failed
+0.644s
+Error:
+
+Expected: success response
+
+Received: Request failed with status code 404
+
+Config:
+ url: sa/quiz/questions
+ method: post
+ response status: 404
+ request body: {"body":"question body 433855","correctAnswers":["correct answer 1, correct answer 2"]}
+ response data: {"message":"Cannot POST /sa/quiz/questions","error":"Not Found","statusCode":404}
+
+
+    at handleTestError (/home/node/dist/auto-test-checker/src/tests/jest/back/testHelpers/handleTestError.ts:24:25)
+    at /home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/SA/questions-body-validation.ts:86:41
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at Object.<anonymous> (/home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/SA/questions-body-validation.ts:84:48)
+Homework 25 > Access right for game flow
+GET -> "/pair-game-quiz/pairs/:id": create new game by user1, get game by user2. Should return error if current user tries to get pair in which not participated; status 403; used additional methods: DELETE -> /testing/all-data, POST -> /sa/users, POST -> /auth/login, POST -> /sa/quiz/questions, PUT -> /sa/quiz/questions/:questionId/publish, POST -> /pair-game-quiz/pairs/connection;
+failed
+3.763s
+Error:
+
+Expected: success response
+
+Received: Request failed with status code 404
+
+Config:
+ url: sa/quiz/questions
+ method: post
+ response status: 404
+ request body: {"body":"question body0 438042","correctAnswers":["correct answer"]}
+ response data: {"message":"Cannot POST /sa/quiz/questions","error":"Not Found","statusCode":404}
+
+
+    at handleTestError (/home/node/dist/auto-test-checker/src/tests/jest/back/testHelpers/handleTestError.ts:27:9)
+    at /home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/public/pairQuizGame-accessRight-describe.ts:49:24
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at Object.<anonymous> (/home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/public/pairQuizGame-accessRight-describe.ts:48:7)
+Homework 25 > Access right for game flow
+GET -> "/pair-game-quiz/pairs/connection": create new game by user1, connect to game by user2, try to connect by user1, user2. Should return error if current user is already participating in active pair; status 403; used additional methods: DELETE -> /testing/all-data, POST -> /sa/users, POST -> /auth/login, POST -> /sa/quiz/questions, PUT -> /sa/quiz/questions/:questionId/publish, POST -> /pair-game-quiz/pairs/connection;
+failed
+3.77s
+Error:
+
+Expected: success response
+
+Received: Request failed with status code 404
+
+Config:
+ url: sa/quiz/questions
+ method: post
+ response status: 404
+ request body: {"body":"question body0 441809","correctAnswers":["correct answer"]}
+ response data: {"message":"Cannot POST /sa/quiz/questions","error":"Not Found","statusCode":404}
+
+
+    at handleTestError (/home/node/dist/auto-test-checker/src/tests/jest/back/testHelpers/handleTestError.ts:27:9)
+    at /home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/public/pairQuizGame-accessRight-describe.ts:99:24
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at Object.<anonymous> (/home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/public/pairQuizGame-accessRight-describe.ts:98:7)
+Homework 25 > Access right for game flow
+GET -> "/pair-game-quiz/pairs/connection": create new game by user1, try to connect by user1. Should return error if current user is already participating in active pair; status 403; used additional methods: DELETE -> /testing/all-data, POST -> /sa/users, POST -> /auth/login, POST -> /sa/quiz/questions, PUT -> /sa/quiz/questions/:questionId/publish, POST -> /pair-game-quiz/pairs/connection;
+failed
+2.153s
+Error:
+
+Expected: success response
+
+Received: Request failed with status code 404
+
+Config:
+ url: sa/quiz/questions
+ method: post
+ response status: 404
+ request body: {"body":"question body0 443963","correctAnswers":["correct answer"]}
+ response data: {"message":"Cannot POST /sa/quiz/questions","error":"Not Found","statusCode":404}
+
+
+    at handleTestError (/home/node/dist/auto-test-checker/src/tests/jest/back/testHelpers/handleTestError.ts:27:9)
+    at /home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/public/pairQuizGame-accessRight-describe.ts:164:24
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at Object.<anonymous> (/home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/public/pairQuizGame-accessRight-describe.ts:163:7)
+Homework 25 > Access right for game flow
+GET -> "/pair-game-quiz/pairs/my-current/answers": create new game by user1, connect by user2, try to add answer by user3. Should return error if current user is not inside active pair; status 403; used additional methods: DELETE -> /testing/all-data, POST -> /sa/users, POST -> /auth/login, POST -> /sa/quiz/questions, PUT -> /sa/quiz/questions/:questionId/publish;
+failed
+5.337s
+Error:
+
+Expected: success response
+
+Received: Request failed with status code 404
+
+Config:
+ url: sa/quiz/questions
+ method: post
+ response status: 404
+ request body: {"body":"question body0 449295","correctAnswers":["correct answer"]}
+ response data: {"message":"Cannot POST /sa/quiz/questions","error":"Not Found","statusCode":404}
+
+
+    at handleTestError (/home/node/dist/auto-test-checker/src/tests/jest/back/testHelpers/handleTestError.ts:27:9)
+    at /home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/public/pairQuizGame-accessRight-describe.ts:213:24
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at Object.<anonymous> (/home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/public/pairQuizGame-accessRight-describe.ts:212:7)
+Homework 25 > Access right for game flow
+GET -> "/pair-game-quiz/pairs/my-current/answers": create new game by user1, try to add answer by user1. Should return error if current user is not inside active pair; status 403; used additional methods: DELETE -> /testing/all-data, POST -> /sa/users, POST -> /auth/login, POST -> /sa/quiz/questions, PUT -> /sa/quiz/questions/:questionId/publish, POST -> /pair-game-quiz/pairs/connection;
+failed
+2.131s
+Error:
+
+Expected: success response
+
+Received: Request failed with status code 404
+
+Config:
+ url: sa/quiz/questions
+ method: post
+ response status: 404
+ request body: {"body":"question body0 451438","correctAnswers":["correct answer"]}
+ response data: {"message":"Cannot POST /sa/quiz/questions","error":"Not Found","statusCode":404}
+
+
+    at handleTestError (/home/node/dist/auto-test-checker/src/tests/jest/back/testHelpers/handleTestError.ts:27:9)
+    at /home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/public/pairQuizGame-accessRight-describe.ts:267:24
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at Object.<anonymous> (/home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/public/pairQuizGame-accessRight-describe.ts:266:7)
+Homework 25 > Access right for game flow
+GET -> "/pair-game-quiz/pairs/my-current/answers": create new game by user1, connect to game by user2, add 6 answers by user1. Should return error if current user has already answered to all questions; status 403; used additional methods: DELETE -> /testing/all-data, POST -> /sa/users, POST -> /auth/login, POST -> /sa/quiz/questions, PUT -> /sa/quiz/questions/:questionId/publish, POST -> /pair-game-quiz/pairs/connection, POST -> /pair-game-quiz/pairs/my-current/answers;
+failed
+3.853s
+Error:
+
+Expected: success response
+
+Received: Request failed with status code 404
+
+Config:
+ url: sa/quiz/questions
+ method: post
+ response status: 404
+ request body: {"body":"question body0 455287","correctAnswers":["correct answer"]}
+ response data: {"message":"Cannot POST /sa/quiz/questions","error":"Not Found","statusCode":404}
+
+
+    at handleTestError (/home/node/dist/auto-test-checker/src/tests/jest/back/testHelpers/handleTestError.ts:27:9)
+    at /home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/public/pairQuizGame-accessRight-describe.ts:319:24
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at Object.<anonymous> (/home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/public/pairQuizGame-accessRight-describe.ts:318:7)
+Homework 25 > Access right for game flow
+GET -> "/pair-game-quiz/pairs/my-current": create new game by user1, connect to game by user2, add all answers by users. Should return error if no active pair for current user; status 404; used additional methods: DELETE -> /testing/all-data, POST -> /sa/users, POST -> /auth/login, POST -> /pair-game-quiz/pairs/connection, POST -> /sa/quiz/questions, PUT -> /sa/quiz/questions/:questionId/publish, POST -> /pair-game-quiz/pairs/my-current/answers;
+failed
+3.747s
+Error:
+
+Expected: success response
+
+Received: Request failed with status code 404
+
+Config:
+ url: sa/quiz/questions
+ method: post
+ response status: 404
+ request body: {"body":"question body0 459032","correctAnswers":["correct answer"]}
+ response data: {"message":"Cannot POST /sa/quiz/questions","error":"Not Found","statusCode":404}
+
+
+    at handleTestError (/home/node/dist/auto-test-checker/src/tests/jest/back/testHelpers/handleTestError.ts:27:9)
+    at /home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/public/pairQuizGame-accessRight-describe.ts:380:24
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at Object.<anonymous> (/home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/public/pairQuizGame-accessRight-describe.ts:379:7)
+Homework 25 > Exceptions for game flow
+DELETE -> "/testing/all-data": should remove all data; status 204;
+passed
+0.345s
+Homework 25 > Exceptions for game flow
+POST -> "/sa/users": should create new user; status 201; content: created user; used additional methods: GET => /sa/users;
+passed
+0.752s
+Homework 25 > Exceptions for game flow
+POST -> "/auth/login": should sign in user; status 200; content: JWT 'access' token, JWT 'refresh' token in cookie (http only, secure);
+passed
+0.324s
+Homework 25 > Exceptions for game flow
+POST -> "/sa/quiz/questions", PUT -> "/sa/quiz/questions/:questionId/publish": should create and publish several questions; status 201; content: created question;
+failed
+0.229s
+Error:
+
+Expected: success response
+
+Received: Request failed with status code 404
+
+Config:
+ url: sa/quiz/questions
+ method: post
+ response status: 404
+ request body: {"body":"question body0 460678","correctAnswers":["correct answer"]}
+ response data: {"message":"Cannot POST /sa/quiz/questions","error":"Not Found","statusCode":404}
+
+
+    at handleTestError (/home/node/dist/auto-test-checker/src/tests/jest/back/testHelpers/handleTestError.ts:27:9)
+    at /home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/public/pairQuizeGame-createConnectGame-describe.ts:105:24
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at Object.<anonymous> (/home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/public/pairQuizeGame-createConnectGame-describe.ts:104:7)
+Homework 25 > Exceptions for game flow
+GET -> "/pair-game-quiz/pairs/my-current": should return error if there is no active pair for current user; status 404;
+passed
+0.39s
+Homework 25 > Exceptions for game flow
+GET -> "/pair-game-quiz/pairs/my-current": should return error if such game does not exist; status 404;
+passed
+0.221s
+Homework 25 > Exceptions for game flow
+GET -> "/pair-game-quiz/pairs/my-current", GET -> "pair-game-quiz/pairs/:id", POST -> "pair-game-quiz/pairs/connection", POST -> "pair-game-quiz/pairs/my-current/answers": should return error if auth credentials is incorrect; status 404; used additional methods: POST -> /pair-game-quiz/pairs/connection;
+failed
+0.227s
+AxiosError: Request failed with status code 404
+    at settle (/home/node/dist/auto-test-checker/node_modules/axios/lib/core/settle.js:19:12)
+    at IncomingMessage.handleStreamEnd (/home/node/dist/auto-test-checker/node_modules/axios/lib/adapters/http.js:798:11)
+    at IncomingMessage.emit (node:events:529:35)
+    at endReadableNT (node:internal/streams/readable:1368:12)
+    at processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (/home/node/dist/auto-test-checker/node_modules/axios/lib/core/Axios.js:46:41)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at createConnection (/home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/public/pairQuizeGame-createConnectGame-describe.ts:31:3)
+    at Object.<anonymous> (/home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/public/pairQuizGameExceptions-describe.ts:86:33)
+Homework 25 > Exceptions for game flow
+GET -> "/pair-game-quiz/pairs": should return error if id has invalid format; status 400;
+failed
+0.232s
+Error:
+
+Tested case params:
+ endpoint: pair-game-quiz/pairs/incorrect_id_format,
+ method: GET,
+ headers: {"Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzYmI1ZjYxNS02NTJjLTQ4M2UtOTIyOC02MmExYzMyNDcwMDEiLCJsb2dpbiI6ImxnLTQ1OTYwMiIsImlhdCI6MTc3NzEyNzQ2MCwiZXhwIjoxNzc3MTI4NDYwfQ.fi5rJPmlkGwxTw-njjS1Aq55ibggCsZLH3lBsn5IJOU"},
+
+Expected status: 400
+
+Received status: 404
+
+
+
+    at performEndpointErrorChecker (/home/node/dist/auto-test-checker/src/tests/jest/back/testHelpers/performCheckers.ts:51:22)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at Object.<anonymous> (/home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/public/pairQuizGameExceptions-describe.ts:128:7)
+Homework 25 > Create, connect games, add answers
+DELETE -> "/testing/all-data": should remove all data; status 204;
+passed
+0.321s
+Homework 25 > Create, connect games, add answers
+POST -> "/sa/users", "/auth/login": should create and login 6 users; status 201; content: created users;
+passed
+9.575s
+Homework 25 > Create, connect games, add answers
+POST -> "/sa/quiz/questions", PUT -> "/sa/quiz/questions/:questionId/publish": should create and publish several questions; status 201; content: created question;
+failed
+0.22s
+Error:
+
+Expected: success response
+
+Received: Request failed with status code 404
+
+Config:
+ url: sa/quiz/questions
+ method: post
+ response status: 404
+ request body: {"body":"question body0 472032","correctAnswers":["correct answer"]}
+ response data: {"message":"Cannot POST /sa/quiz/questions","error":"Not Found","statusCode":404}
+
+
+    at handleTestError (/home/node/dist/auto-test-checker/src/tests/jest/back/testHelpers/handleTestError.ts:27:9)
+    at /home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/public/pairQuizeGame-createConnectGame-describe.ts:105:24
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at Object.<anonymous> (/home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/public/pairQuizeGame-createConnectGame-describe.ts:104:7)
+Homework 25 > Create, connect games, add answers
+POST -> "/pair-game-quiz/pairs/connection", GET -> "/pair-game-quiz/pairs/:id", GET -> "/pair-game-quiz/pairs/my-current": create new active game by user1, then get the game by user1, then call "/pair-game-quiz/pairs/my-current" by user1. Should return new created active game; status 200;
+failed
+0.215s
+Error:
+
+Expected: success response
+
+Received: Request failed with status code 404
+
+Config:
+ url: pair-game-quiz/pairs/connection
+ method: post
+ response status: 404
+ request body: {}
+ response data: {"message":"Cannot POST /pair-game-quiz/pairs/connection","error":"Not Found","statusCode":404}
+
+
+    at handleTestError (/home/node/dist/auto-test-checker/src/tests/jest/back/testHelpers/handleTestError.ts:24:25)
+    at /home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/public/pairGameTestsFlow.ts:33:91
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at createNewGameTestFlow (/home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/public/pairGameTestsFlow.ts:33:5)
+    at Object.<anonymous> (/home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/public/pairQuizeGame-createConnectGame-describe.ts:120:37)
+Homework 25 > Create, connect games, add answers
+POST -> "/pair-game-quiz/pairs/connection", GET -> "/pair-game-quiz/pairs/:id", GET -> "/pair-game-quiz/pairs/my-current": connect to existing game by user2; then get the game by user1, user2; then call "/pair-game-quiz/pairs/my-current" by user1, user2. Should return started game; status 200;
+failed
+0.219s
+Error:
+
+Expected: success response
+
+Received: Request failed with status code 404
+
+Config:
+ url: pair-game-quiz/pairs/connection
+ method: post
+ response status: 404
+ request body: {}
+ response data: {"message":"Cannot POST /pair-game-quiz/pairs/connection","error":"Not Found","statusCode":404}
+
+
+    at handleTestError (/home/node/dist/auto-test-checker/src/tests/jest/back/testHelpers/handleTestError.ts:24:25)
+    at /home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/public/pairGameTestsFlow.ts:55:22
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at connectToExistingGameTestFlow (/home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/public/pairGameTestsFlow.ts:54:5)
+    at Object.<anonymous> (/home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/public/pairQuizeGame-createConnectGame-describe.ts:144:37)
+Homework 25 > Create, connect games, add answers
+POST -> "/pair-game-quiz/pairs/my-current/answers", GET -> "/pair-game-quiz/pairs", GET -> "/pair-game-quiz/pairs/my-current": add answers to first game, created by user1, connected by user2: add correct answer by firstPlayer; add incorrect answer by secondPlayer; add correct answer by secondPlayer; get active game and call "/pair-game-quiz/pairs/my-current by both users after each answer"; status 200;
+failed
+0.002s
+Error: expect(received).not.toBeUndefined()
+
+Received: undefined
+    at getExistingGameFromStateCallback (/home/node/dist/auto-test-checker/src/tests/jest/back/testHelpers/jestState/pairGameState.ts:9:31)
+    at Object.<anonymous> (/home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/public/pairQuizeGame-createConnectGame-describe.ts:239:28)
+    at Promise.then.completed (/home/node/dist/auto-test-checker/node_modules/jest-circus/build/utils.js:391:28)
+    at new Promise (<anonymous>)
+    at callAsyncCircusFn (/home/node/dist/auto-test-checker/node_modules/jest-circus/build/utils.js:316:10)
+    at _callCircusTest (/home/node/dist/auto-test-checker/node_modules/jest-circus/build/run.js:218:40)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at _runTest (/home/node/dist/auto-test-checker/node_modules/jest-circus/build/run.js:155:3)
+    at _runTestsForDescribeBlock (/home/node/dist/auto-test-checker/node_modules/jest-circus/build/run.js:66:9)
+    at _runTestsForDescribeBlock (/home/node/dist/auto-test-checker/node_modules/jest-circus/build/run.js:60:9)
+    at _runTestsForDescribeBlock (/home/node/dist/auto-test-checker/node_modules/jest-circus/build/run.js:60:9)
+    at run (/home/node/dist/auto-test-checker/node_modules/jest-circus/build/run.js:25:3)
+    at runAndTransformResultsToJestFormat (/home/node/dist/auto-test-checker/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:170:21)
+    at jestAdapter (/home/node/dist/auto-test-checker/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:68:19)
+    at runTestInternal (/home/node/dist/auto-test-checker/node_modules/jest-runner/build/runTest.js:250:16)
+    at runTest (/home/node/dist/auto-test-checker/node_modules/jest-runner/build/runTest.js:310:7)
+Homework 25 > Create, connect games, add answers
+POST -> "/pair-game-quiz/pairs/my-current/answers", GET -> "/pair-game-quiz/pairs", GET -> "/pair-game-quiz/pairs/my-current": create second game by user3, connect to the game by user4, then: add correct answer by firstPlayer; add incorrect answer by secondPlayer; add correct answer by secondPlayer; get active game and call "/pair-game-quiz/pairs/my-current by both users after each answer"; status 200;
+failed
+0.222s
+Error:
+
+Expected: success response
+
+Received: Request failed with status code 404
+
+Config:
+ url: pair-game-quiz/pairs/connection
+ method: post
+ response status: 404
+ request body: {}
+ response data: {"message":"Cannot POST /pair-game-quiz/pairs/connection","error":"Not Found","statusCode":404}
+
+
+    at handleTestError (/home/node/dist/auto-test-checker/src/tests/jest/back/testHelpers/handleTestError.ts:24:25)
+    at /home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/public/pairGameTestsFlow.ts:33:91
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at createNewGameTestFlow (/home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/public/pairGameTestsFlow.ts:33:5)
+    at Object.<anonymous> (/home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/public/pairQuizeGame-createConnectGame-describe.ts:189:7)
+Homework 25 > Create, connect games, add answers
+POST -> "/pair-game-quiz/pairs/my-current/answers", GET -> "/pair-game-quiz/pairs", GET -> "/pair-game-quiz/pairs/my-current": add answers to first game, created by user1, connected by user2: add correct answer by firstPlayer; add correct answer by firstPlayer; add correct answer by secondPlayer; add correct answer by secondPlayer; add incorrect answer by firstPlayer; add correct answer by firstPlayer; add correct answer by secondPlayer; firstPlayer should win with 5 scores; get active game and call "/pair-game-quiz/pairs/my-current by both users after each answer"; status 200;
+failed
+0.001s
+Error: expect(received).not.toBeUndefined()
+
+Received: undefined
+    at getExistingGameFromStateCallback (/home/node/dist/auto-test-checker/src/tests/jest/back/testHelpers/jestState/pairGameState.ts:9:31)
+    at Object.<anonymous> (/home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/public/pairQuizeGame-createConnectGame-describe.ts:239:28)
+    at Promise.then.completed (/home/node/dist/auto-test-checker/node_modules/jest-circus/build/utils.js:391:28)
+    at new Promise (<anonymous>)
+    at callAsyncCircusFn (/home/node/dist/auto-test-checker/node_modules/jest-circus/build/utils.js:316:10)
+    at _callCircusTest (/home/node/dist/auto-test-checker/node_modules/jest-circus/build/run.js:218:40)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at _runTest (/home/node/dist/auto-test-checker/node_modules/jest-circus/build/run.js:155:3)
+    at _runTestsForDescribeBlock (/home/node/dist/auto-test-checker/node_modules/jest-circus/build/run.js:66:9)
+    at _runTestsForDescribeBlock (/home/node/dist/auto-test-checker/node_modules/jest-circus/build/run.js:60:9)
+    at _runTestsForDescribeBlock (/home/node/dist/auto-test-checker/node_modules/jest-circus/build/run.js:60:9)
+    at run (/home/node/dist/auto-test-checker/node_modules/jest-circus/build/run.js:25:3)
+    at runAndTransformResultsToJestFormat (/home/node/dist/auto-test-checker/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:170:21)
+    at jestAdapter (/home/node/dist/auto-test-checker/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:68:19)
+    at runTestInternal (/home/node/dist/auto-test-checker/node_modules/jest-runner/build/runTest.js:250:16)
+    at runTest (/home/node/dist/auto-test-checker/node_modules/jest-runner/build/runTest.js:310:7)
+Homework 25 > Create, connect games, add answers
+POST -> "/pair-game-quiz/pairs/my-current/answers", GET -> "/pair-game-quiz/pairs", GET -> "/pair-game-quiz/pairs/my-current": create third game by user2, connect to the game by user1, then: add correct answer by firstPlayer; add incorrect answer by secondPlayer; add correct answer by secondPlayer; get active game and call "/pair-game-quiz/pairs/my-current by both users after each answer"; status 200;
+failed
+0.236s
+Error:
+
+Expected: success response
+
+Received: Request failed with status code 404
+
+Config:
+ url: pair-game-quiz/pairs/connection
+ method: post
+ response status: 404
+ request body: {}
+ response data: {"message":"Cannot POST /pair-game-quiz/pairs/connection","error":"Not Found","statusCode":404}
+
+
+    at handleTestError (/home/node/dist/auto-test-checker/src/tests/jest/back/testHelpers/handleTestError.ts:24:25)
+    at /home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/public/pairGameTestsFlow.ts:33:91
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at createNewGameTestFlow (/home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/public/pairGameTestsFlow.ts:33:5)
+    at Object.<anonymous> (/home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/public/pairQuizeGame-createConnectGame-describe.ts:189:7)
+Homework 25 > Create, connect games, add answers
+POST -> "/pair-game-quiz/pairs/my-current/answers", GET -> "/pair-game-quiz/pairs", GET -> "/pair-game-quiz/pairs/my-current": create 4th game by user5, connect to the game by user6, then: add correct answer by firstPlayer; add incorrect answer by firstPlayer; add correct answer by secondPlayer; add incorrect answer by secondPlayer; add incorrect answer by secondPlayer; add incorrect answer by secondPlayer; add incorrect answer by secondPlayer; add correct answer by firstPlayer; add incorrect answer by firstPlayer; add incorrect answer by firstPlayer; draw with 2 scores; get active game and call "/pair-game-quiz/pairs/my-current by both users after each answer"; status 200;
+failed
+0.221s
+Error:
+
+Expected: success response
+
+Received: Request failed with status code 404
+
+Config:
+ url: pair-game-quiz/pairs/connection
+ method: post
+ response status: 404
+ request body: {}
+ response data: {"message":"Cannot POST /pair-game-quiz/pairs/connection","error":"Not Found","statusCode":404}
+
+
+    at handleTestError (/home/node/dist/auto-test-checker/src/tests/jest/back/testHelpers/handleTestError.ts:24:25)
+    at /home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/public/pairGameTestsFlow.ts:33:91
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at createNewGameTestFlow (/home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/public/pairGameTestsFlow.ts:33:5)
+    at Object.<anonymous> (/home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/public/pairQuizeGame-createConnectGame-describe.ts:189:7)
+Homework 25 > Create, connect games, add answers
+POST -> "/pair-game-quiz/pairs/my-current/answers", GET -> "/pair-game-quiz/pairs", GET -> "/pair-game-quiz/pairs/my-current": add answers to second game, created by user3, connected by user4: add incorrect answer by firstPlayer; add incorrect answer by firstPlayer; add correct answer by secondPlayer; add correct answer by secondPlayer; add incorrect answer by secondPlayer; add correct answer by firstPlayer; add incorrect answer by firstPlayer; secondPlayer should win with 4 scores; get active game and call "/pair-game-quiz/pairs/my-current by both users after each answer"; status 200;
+failed
+0.001s
+Error: expect(received).not.toBeUndefined()
+
+Received: undefined
+    at getExistingGameFromStateCallback (/home/node/dist/auto-test-checker/src/tests/jest/back/testHelpers/jestState/pairGameState.ts:21:32)
+    at Object.<anonymous> (/home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/public/pairQuizeGame-createConnectGame-describe.ts:239:28)
+    at Promise.then.completed (/home/node/dist/auto-test-checker/node_modules/jest-circus/build/utils.js:391:28)
+    at new Promise (<anonymous>)
+    at callAsyncCircusFn (/home/node/dist/auto-test-checker/node_modules/jest-circus/build/utils.js:316:10)
+    at _callCircusTest (/home/node/dist/auto-test-checker/node_modules/jest-circus/build/run.js:218:40)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at _runTest (/home/node/dist/auto-test-checker/node_modules/jest-circus/build/run.js:155:3)
+    at _runTestsForDescribeBlock (/home/node/dist/auto-test-checker/node_modules/jest-circus/build/run.js:66:9)
+    at _runTestsForDescribeBlock (/home/node/dist/auto-test-checker/node_modules/jest-circus/build/run.js:60:9)
+    at _runTestsForDescribeBlock (/home/node/dist/auto-test-checker/node_modules/jest-circus/build/run.js:60:9)
+    at run (/home/node/dist/auto-test-checker/node_modules/jest-circus/build/run.js:25:3)
+    at runAndTransformResultsToJestFormat (/home/node/dist/auto-test-checker/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:170:21)
+    at jestAdapter (/home/node/dist/auto-test-checker/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:68:19)
+    at runTestInternal (/home/node/dist/auto-test-checker/node_modules/jest-runner/build/runTest.js:250:16)
+    at runTest (/home/node/dist/auto-test-checker/node_modules/jest-runner/build/runTest.js:310:7)
+Homework 25 > Create, connect games, add answers
+POST -> "/pair-game-quiz/pairs/my-current/answers", GET -> "/pair-game-quiz/pairs", GET -> "/pair-game-quiz/pairs/my-current": add answers to third game, created by user2, connected by user1: add correct answer by firstPlayer; add correct answer by firstPlayer; add correct answer by secondPlayer; add correct answer by secondPlayer; add incorrect answer by firstPlayer; add correct answer by firstPlayer; add correct answer by secondPlayer; firstPlayer should win with 5 scores; get active game and call "/pair-game-quiz/pairs/my-current by both users after each answer"; status 200;
+failed
+0s
+Error: expect(received).not.toBeUndefined()
+
+Received: undefined
+    at getExistingGameFromStateCallback (/home/node/dist/auto-test-checker/src/tests/jest/back/testHelpers/jestState/pairGameState.ts:33:31)
+    at Object.<anonymous> (/home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/public/pairQuizeGame-createConnectGame-describe.ts:239:28)
+    at Promise.then.completed (/home/node/dist/auto-test-checker/node_modules/jest-circus/build/utils.js:391:28)
+    at new Promise (<anonymous>)
+    at callAsyncCircusFn (/home/node/dist/auto-test-checker/node_modules/jest-circus/build/utils.js:316:10)
+    at _callCircusTest (/home/node/dist/auto-test-checker/node_modules/jest-circus/build/run.js:218:40)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at _runTest (/home/node/dist/auto-test-checker/node_modules/jest-circus/build/run.js:155:3)
+    at _runTestsForDescribeBlock (/home/node/dist/auto-test-checker/node_modules/jest-circus/build/run.js:66:9)
+    at _runTestsForDescribeBlock (/home/node/dist/auto-test-checker/node_modules/jest-circus/build/run.js:60:9)
+    at _runTestsForDescribeBlock (/home/node/dist/auto-test-checker/node_modules/jest-circus/build/run.js:60:9)
+    at run (/home/node/dist/auto-test-checker/node_modules/jest-circus/build/run.js:25:3)
+    at runAndTransformResultsToJestFormat (/home/node/dist/auto-test-checker/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:170:21)
+    at jestAdapter (/home/node/dist/auto-test-checker/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:68:19)
+    at runTestInternal (/home/node/dist/auto-test-checker/node_modules/jest-runner/build/runTest.js:250:16)
+    at runTest (/home/node/dist/auto-test-checker/node_modules/jest-runner/build/runTest.js:310:7)

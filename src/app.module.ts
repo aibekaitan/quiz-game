@@ -6,6 +6,7 @@ import { UserAccountsModule } from './modules/user-accounts/user-accounts.module
 import { CoreModule } from './core/core.module';
 import { TestingModule } from './testing/testing.module';
 import { BloggersPlatformModule } from './modules/bloggers-platform/bloggers-platform.module';
+import { QuizModule } from './modules/quiz/quiz.module';
 import { configModule } from './config-dynamic-module';
 import { CoreConfig } from './core/core.config';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
@@ -43,6 +44,7 @@ import { APP_GUARD } from '@nestjs/core';
     }),
     UserAccountsModule,
     BloggersPlatformModule,
+    QuizModule,
   ],
   controllers: [AppController],
   providers: [

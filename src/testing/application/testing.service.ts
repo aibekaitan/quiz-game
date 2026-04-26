@@ -6,41 +6,33 @@ export class TestingService {
   constructor(private readonly dataSource: DataSource) {}
 
   async deleteAllData(): Promise<void> {
-    // Для PostgreSQL / MySQL / SQLite
-    const queryRunner = this.dataSource.createQueryRunner();
+    const tables = [
+      'quiz_answers',
+      'quiz_player_progress',
+      'quiz_game_questions',
+      'quiz_games',
+      'quiz_questions',
+      'comments',
+      'likes',
+      'posts',
+      'blogs',
+      'devices',
+      'users',
+    ];
 
     try {
-      await queryRunner.connect();
-      await queryRunner.startTransaction();
-
-      // Отключаем проверки внешних ключей (важно для CASCADE)
-      await queryRunner.query('SET CONSTRAINTS ALL DEFERRED'); // PostgreSQL
-      // или для MySQL: await queryRunner.query('SET FOREIGN_KEY_CHECKS = 0;');
-
-      // Список таблиц в правильном порядке (от зависимых → к независимым)
-      const tables = [
-        'comments', // зависит от posts и users
-        'likes', // зависит от comments и users
-        'posts', // зависит от blogs и users
-        'blogs', // зависит от users
-        'devices',
-        'users', // независимая (или почти)
-      ];
-
-      for (const table of tables) {
-        await queryRunner.query(`TRUNCATE TABLE "${table}" CASCADE;`);
-      }
-
-      // Включаем обратно (MySQL)
-      // await queryRunner.query('SET FOREIGN_KEY_CHECKS = 1;');
-
-      await queryRunner.commitTransaction();
+      // Use CASCADE to handle dependencies automatically
+      // We join the table names into a single string for efficiency
+      const tableNames = tables.map(t => `"${t}"`).join(', ');
+      await this.dataSource.query(`TRUNCATE TABLE ${tableNames} RESTART IDENTITY CASCADE;`);
     } catch (err) {
-      await queryRunner.rollbackTransaction();
-      console.error('Ошибка очистки базы:', err);
-      throw err;
-    } finally {
-      await queryRunner.release();
+      console.error('Error during database cleanup:', err);
+      // Fallback to individual deletes if TRUNCATE fails
+      for (const table of tables) {
+          try {
+              await this.dataSource.query(`DELETE FROM "${table}";`);
+          } catch (e) {}
+      }
     }
   }
 }

@@ -1,0 +1,51 @@
+@startuml
+
+entity User {
+  * id : uuid
+  --
+  login : string
+  email : string
+  password : string
+}
+
+entity Player {
+  * id : uuid
+  --
+  userId : uuid
+  score : number
+}
+
+entity Answer {
+  * id : uuid
+  --
+  addedAt : date
+}
+
+entity Game {
+  * id : uuid
+  --
+  status : Pending | Active | Finished
+  player_1 : uuid
+  player_2 : uuid | null
+}
+
+entity Question {
+  * id : uuid
+  --
+  body : string
+  answers : string[]
+  published : boolean
+}
+
+entity GameQuestion {
+  * id : serial
+  --
+}
+
+User ||--o{ Player : "has"
+Player ||--o{ Answer : "has"
+Game ||--|{ Player : "has"
+Game }|--|| GameQuestion : "has"
+GameQuestion }|--|| Question : "has"
+
+@enduml

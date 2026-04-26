@@ -1,0 +1,59 @@
+I have a NestJS project. I need to implement Quiz Game feature.
+
+## Project structure (existing):
+src/
+└── features/
+    ├── user-accounts/   ← already done (auth, users, jwt)
+    └── bloggers-platform/ ← will be deleted, use as reference for code style
+
+## Code style reference (BloggersPlatformModule):
+C:\Users\User\WebstormProjects\dev1\quiz-game\src\modules\bloggers-platform
+
+## API endpoints I need to implement:
+
+### SA (Basic Auth):
+POST   /sa/quiz/questions        - create question
+GET    /sa/quiz/questions        - get all with pagination
+PUT    /sa/quiz/questions/:id    - update question
+DELETE /sa/quiz/questions/:id    - delete question
+PUT    /sa/quiz/questions/:id/publish - publish/unpublish
+
+### Public (JWT Auth):
+POST   /pair-game-quiz/pairs/connection          - create or join game
+GET    /pair-game-quiz/pairs/my-current          - get current game
+GET    /pair-game-quiz/pairs/:id                 - get game by id
+POST   /pair-game-quiz/pairs/my-current/answers  - send answer
+
+## Question entity fields:
+- id: uuid
+- body: string (min 10, max 500)
+- correctAnswers: string[] (jsonb column)
+- published: boolean (default false)
+- createdAt: date
+- updatedAt: date | null
+
+## Game entity fields:
+- id: uuid
+- status: Pending | Active | Finished
+- player_1: Player
+- player_2: Player | null
+- questions: Question[]
+
+## Player entity fields:
+- id: uuid
+- userId: uuid
+- score: number
+- answers: Answer[]
+
+## Answer entity fields:
+- id: uuid
+- addedAt: date
+
+## Task:
+Generate using CQRS pattern (CommandBus/QueryBus):
+1. All TypeORM entities
+2. GameModule (like BloggersPlatformModule structure)
+3. All repositories
+4. All command/query handlers
+5. Controllers with Swagger decorators
+6. DTOs with class-validator
