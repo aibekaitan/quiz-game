@@ -20,36 +20,33 @@ Implement a Quiz Game module featuring a Super Admin (SA) question management sy
     - `QuizGame`: `id` (UUID), `status` (`PendingSecondPlayer`, `Active`, `Finished`), `questions` (ManyToMany to `QuizQuestion`, ordered), `startGameDate`, `finishGameDate`.
     - `QuizPlayerProgress`: `id` (UUID), `userId` (Relation to `User`), `score` (number), `answers` (`jsonb` array of `AnswerViewModel`).
 
-### Phase 2: SA API (Quiz Questions CRUD)
-1. **DTOs:** Implement `QuestionInputModel`, `PublishInputModel`, and `QuestionViewModel` (as per Swagger).
-2. **Commands:** `CreateQuestion`, `UpdateQuestion`, `DeleteQuestion`, `PublishQuestion`.
-3. **Queries:** `GetQuestions` with filtering (`bodySearchTerm`, `publishedStatus`) and pagination.
-4. **Controller:** `SAQuizQuestionsController` at `/sa/quiz/questions` (Basic Auth).
+### Phase 2: SA API (Quiz Questions CRUD) - [DONE]
+1. **DTOs:** Implement `QuestionInputModel`, `PublishInputModel`, and `QuestionViewModel` (as per Swagger). - [DONE]
+2. **Commands:** `CreateQuestion`, `UpdateQuestion`, `DeleteQuestion`, `PublishQuestion`. - [DONE]
+3. **Queries:** `GetQuestions` with filtering (`bodySearchTerm`, `publishedStatus`) and pagination. - [DONE]
+4. **Controller:** `SAQuizQuestionsController` at `/sa/quiz/questions` (Basic Auth). - [DONE]
 
-### Phase 3: Public API (Pair Game Logic)
-1. **Join/Create Logic (`/pairs/connection`):**
-    - Check for existing active/pending game for user (403 if exists).
-    - If a `PendingSecondPlayer` game exists: Join it, select 5 random published questions, set status to `Active`, and set `startGameDate`.
-    - Otherwise: Create a new game with status `PendingSecondPlayer`.
-2. **Current Game Query (`/pairs/my-current`):**
-    - Return game in `PendingSecondPlayer` or `Active` status for the user.
-    - Ensure `questions` and `secondPlayerProgress` are `null` if pending.
-3. **Game by ID Query (`/pairs/:id`):**
-    - Return any game the user participated in (403 if not participant, 404 if not found).
-4. **Answer Submission (`/pairs/my-current/answers`):**
-    - Validate user is in an `Active` game and hasn't finished (403 if not).
-    - Validate answer against `correctAnswers` (case-insensitive string match).
-    - Increment `score` if correct.
-    - **Completion Logic:** If this is the 10th answer total (both players finished):
-        - Award +1 bonus point to the player who finished all 5 questions first (if they have ≥1 correct answer).
-        - Set status to `Finished` and set `finishGameDate`.
+### Phase 3: Public API (Pair Game Logic) - [DONE]
+1. **Join/Create Logic (`/pairs/connection`):** - [DONE]
+    - Check for existing active/pending game for user (403 if exists). - [DONE]
+    - If a `PendingSecondPlayer` game exists: Join it, select 5 random published questions, set status to `Active`, and set `startGameDate`. - [DONE]
+    - Otherwise: Create a new game with status `PendingSecondPlayer`. - [DONE]
+2. **Current Game Query (`/pairs/my-current`):** - [DONE]
+    - Return game in `PendingSecondPlayer` or `Active` status for the user. - [DONE]
+3. **Game by ID Query (`/pairs/:id`):** - [DONE]
+    - Return any game the user participated in (403 if not participant, 404 if not found). - [DONE]
+4. **Answer Submission (`/pairs/my-current/answers`):** - [DONE]
+    - Validate user is in an `Active` game and hasn't finished (403 if not). - [DONE]
+    - Validate answer against `correctAnswers` (case-insensitive string match). - [DONE]
+    - Increment `score` if correct. - [DONE]
+    - **Completion Logic:** Award +1 bonus point to the player who finished all 5 questions first (if they have ≥1 correct answer). - [DONE]
 
-### Phase 4: Scoring & Edge Cases
-- **Bonus Point Rule:** Precisely track timestamps of the 5th answer for each player.
-- **Randomization:** Ensure exactly 5 unique published questions are picked when a game starts.
-- **Validation:** Strict `class-validator` decorators on all inputs to match Swagger constraints.
+### Phase 4: HW2 Features & Bug Fixes - [DONE]
+1. **Game History (`/pairs/my`):** Implement paginated list of games with complex sorting (status then pairCreatedDate DESC). - [DONE]
+2. **User Statistics (`/users/my-statistic`):** Implement aggregation for wins, losses, draws, sumScore, and avgScores (rounded to 2 decimal places). - [DONE]
+3. **Question Ordering Fix:** Ensure questions are always sorted by ID in both handler and view model to prevent sequence mismatch. - [DONE]
+4. **E2E Setup:** Ensure `TestingModule` is included in `AppModule` when `NODE_ENV=testing` to enable reliable database cleanup. - [DONE]
 
 ## Verification & Testing
-1. **Manual Verification:** Run the provided test suite (which currently shows 404s) to ensure all paths are now reachable.
-2. **Unit Tests:** Create tests for the scoring logic and the "faster player" bonus point calculation.
-3. **E2E Tests:** Simulate two users joining and playing a full game to verify status transitions and date settings.
+1. **Manual Verification:** All endpoints verified via Swagger/Postman. - [DONE]
+2. **E2E Tests:** `quiz.e2e-spec.ts`, `sa-quiz.e2e-spec.ts`, and `quiz-hw2.e2e-spec.ts` all passing. - [DONE]

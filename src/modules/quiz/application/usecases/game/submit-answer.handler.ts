@@ -35,11 +35,10 @@ export class SubmitAnswerHandler implements ICommandHandler<SubmitAnswerCommand>
     }
 
     // 3. Determine current question
+    // Ensure questions are sorted the same way as in QueryRepository
+    const sortedQuestions = [...game.questions!].sort((a, b) => a.id.localeCompare(b.id));
     const currentQuestionIndex = progress.answers.length;
-    const question = game.questions![currentQuestionIndex];
-    console.log('question:', JSON.stringify(question));
-    console.log('correctAnswers:', question.correctAnswers);
-    console.log('correctAnswers type:', typeof question.correctAnswers);
+    const question = sortedQuestions[currentQuestionIndex];
     // 4. Validate answer
     const isCorrect = question.correctAnswers.some(
       (ans) => ans && ans.toLowerCase() === (dto.answer || '').toLowerCase(),
@@ -58,11 +57,6 @@ export class SubmitAnswerHandler implements ICommandHandler<SubmitAnswerCommand>
     }
 
     // 6. Check if both players finished
-    console.log('=== FINISH CHECK ===');
-    console.log('current player answers:', progress.answers.length);
-    console.log('other player answers:', otherProgress.answers.length);
-    console.log('game status:', game.status);
-
     if (progress.answers.length === 5 && otherProgress.answers.length === 5) {
       game.status = GameStatus.FINISHED;
       game.finishGameDate = new Date();
@@ -71,7 +65,6 @@ export class SubmitAnswerHandler implements ICommandHandler<SubmitAnswerCommand>
       const firstToFinish = this.getFasterPlayer(game);
       if (firstToFinish) {
           if (firstToFinish.score > 0 || firstToFinish.answers.some(a => a.answerStatus === AnswerStatus.CORRECT)) {
-              // Wait, the rule says "хотя бы 1 вопрос отвечен правильно"
               // The player who finished first gets +1 IF they have >=1 correct answer.
               const hasCorrect = firstToFinish.answers.some(a => a.answerStatus === AnswerStatus.CORRECT);
               if (hasCorrect) {

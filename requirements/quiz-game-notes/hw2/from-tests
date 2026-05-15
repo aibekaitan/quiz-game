@@ -1,0 +1,243 @@
+Test Report
+Started: 2026-05-15 17:17:08
+Suites (1)
+0 passed
+1 failed
+0 pending
+Tests (16)
+6 passed
+10 failed
+0 pending
+/home/node/dist/auto-test-checker/dist/tests/jest/back/back-v3-26-homework-01/quiz-my-games-my-statistic-functionality.spec.js
+23.86s
+Homework 26 > My games
+DELETE -> "/testing/all-data": should remove all data; status 204;
+passed
+0.423s
+Homework 26 > My games
+POST -> "/sa/quiz/questions", PUT -> "/sa/quiz/questions/:questionId/publish": should create and publish several questions; status 201; content: created question;
+passed
+2.937s
+Homework 26 > My games
+POST -> "/sa/users", "/auth/login": should create and login 2 users; status 201; content: created users;
+passed
+3.205s
+Homework 26 > My games
+GET -> "/pair-game-quiz/pairs/my": create, connect to game 3 times and add all answers sequantly. Then create, connect 4th game (not finished). Then get 'myGames' sorted by 'status'; status 200; content: list of current user games (finished and current); used additional methods: POST -> /pair-game-quiz/pairs/connection, POST -> /pair-game-quiz/pairs/my-current/answers;
+failed
+0.886s
+Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: "397a305f-5cc4-45a9-854d-646bb8528649"
+Received: "e256800a-d2b2-42de-b718-8f5cec7ca0d3"
+    at performAddAnswerTestFlow (/home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/public/pairGameTestsFlow.ts:138:40)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at performAddAnswersTestFlow (/home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/public/pairGameTestsFlow.ts:212:16)
+    at Object.<anonymous> (/home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/public/pairQuizGame-myGames-describe.ts:52:42)
+Homework 26 > My statistic
+DELETE -> "/testing/all-data": should remove all data; status 204;
+passed
+0.272s
+Homework 26 > My statistic
+POST -> "/sa/quiz/questions", PUT -> "/sa/quiz/questions/:questionId/publish": should create and publish several questions; status 201; content: created question;
+passed
+2.493s
+Homework 26 > My statistic
+POST -> "/sa/users", "/auth/login": should create and login 4 users; status 201; content: created users;
+passed
+6.38s
+Homework 26 > My statistic
+POST -> "/pair-game-quiz/pairs/my-current/answers", GET -> "/pair-game-quiz/pairs", GET -> "/pair-game-quiz/pairs/my-current": create game by user1, connect to the game by user2, then: add correct answer by firstPlayer; add incorrect answer by firstPlayer; add correct answer by secondPlayer; add incorrect answer by secondPlayer; add incorrect answer by secondPlayer; add incorrect answer by secondPlayer; add incorrect answer by secondPlayer; add correct answer by firstPlayer; add correct answer by firstPlayer; add incorrect answer by firstPlayer; firstPlayer should win, scores: 3 - 2; ; status 200;
+failed
+0.878s
+Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: "0f18660b-d5b2-493a-b80d-6196555af7a9"
+Received: "2f61b298-f6e8-4561-bcc5-2c4e9f710d3a"
+    at performAddAnswerTestFlow (/home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/public/pairGameTestsFlow.ts:138:40)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at performAddAnswersTestFlow (/home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/public/pairGameTestsFlow.ts:212:16)
+    at Object.<anonymous> (/home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/public/pairQuizeGame-createConnectGame-describe.ts:200:37)
+Homework 26 > My statistic
+POST -> "/pair-game-quiz/pairs/my-current/answers", GET -> "/pair-game-quiz/pairs", GET -> "/pair-game-quiz/pairs/my-current": create game by user1, connect to the game by user2, then: add correct answer by firstPlayer; add incorrect answer by firstPlayer; add correct answer by secondPlayer; add incorrect answer by secondPlayer; add incorrect answer by secondPlayer; add incorrect answer by secondPlayer; add incorrect answer by secondPlayer; add correct answer by firstPlayer; add correct answer by firstPlayer; add incorrect answer by firstPlayer; firstPlayer should win, scores: 3 - 2; ; status 200;
+failed
+0.301s
+Error:
+
+Expected: success response
+
+Received: Request failed with status code 403
+
+Config:
+ url: pair-game-quiz/pairs/connection
+ method: post
+ response status: 403
+ request body: {}
+ response data: {"message":"User already has an active or pending game","error":"Forbidden","statusCode":403}
+
+
+    at handleTestError (/home/node/dist/auto-test-checker/src/tests/jest/back/testHelpers/handleTestError.ts:24:25)
+    at /home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/public/pairGameTestsFlow.ts:33:91
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at createNewGameTestFlow (/home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/public/pairGameTestsFlow.ts:33:5)
+    at Object.<anonymous> (/home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/public/pairQuizeGame-createConnectGame-describe.ts:189:7)
+Homework 26 > My statistic
+POST -> "/pair-game-quiz/pairs/my-current/answers", GET -> "/pair-game-quiz/pairs", GET -> "/pair-game-quiz/pairs/my-current": create game by user2, connect to the game by user1, then: add correct answer by firstPlayer; add incorrect answer by firstPlayer; add correct answer by secondPlayer; add incorrect answer by secondPlayer; add incorrect answer by secondPlayer; add incorrect answer by secondPlayer; add incorrect answer by secondPlayer; add correct answer by firstPlayer; add correct answer by firstPlayer; add incorrect answer by firstPlayer; firstPlayer should win, scores: 3 - 2; ; status 200;
+failed
+0.235s
+Error:
+
+Expected: success response
+
+Received: Request failed with status code 403
+
+Config:
+ url: pair-game-quiz/pairs/connection
+ method: post
+ response status: 403
+ request body: {}
+ response data: {"message":"User already has an active or pending game","error":"Forbidden","statusCode":403}
+
+
+    at handleTestError (/home/node/dist/auto-test-checker/src/tests/jest/back/testHelpers/handleTestError.ts:24:25)
+    at /home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/public/pairGameTestsFlow.ts:33:91
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at createNewGameTestFlow (/home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/public/pairGameTestsFlow.ts:33:5)
+    at Object.<anonymous> (/home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/public/pairQuizeGame-createConnectGame-describe.ts:189:7)
+Homework 26 > My statistic
+POST -> "/pair-game-quiz/pairs/my-current/answers", GET -> "/pair-game-quiz/pairs", GET -> "/pair-game-quiz/pairs/my-current": create game by user2, connect to the game by user1, then: add correct answer by firstPlayer; add incorrect answer by firstPlayer; add correct answer by secondPlayer; add incorrect answer by secondPlayer; add incorrect answer by secondPlayer; add incorrect answer by secondPlayer; add incorrect answer by secondPlayer; add correct answer by firstPlayer; add correct answer by firstPlayer; add incorrect answer by firstPlayer; firstPlayer should win, scores: 3 - 2; ; status 200;
+failed
+0.232s
+Error:
+
+Expected: success response
+
+Received: Request failed with status code 403
+
+Config:
+ url: pair-game-quiz/pairs/connection
+ method: post
+ response status: 403
+ request body: {}
+ response data: {"message":"User already has an active or pending game","error":"Forbidden","statusCode":403}
+
+
+    at handleTestError (/home/node/dist/auto-test-checker/src/tests/jest/back/testHelpers/handleTestError.ts:24:25)
+    at /home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/public/pairGameTestsFlow.ts:33:91
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at createNewGameTestFlow (/home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/public/pairGameTestsFlow.ts:33:5)
+    at Object.<anonymous> (/home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/public/pairQuizeGame-createConnectGame-describe.ts:189:7)
+Homework 26 > My statistic
+POST -> "/pair-game-quiz/pairs/my-current/answers", GET -> "/pair-game-quiz/pairs", GET -> "/pair-game-quiz/pairs/my-current": create game by user1, connect to the game by user3, then: add correct answer by firstPlayer; add incorrect answer by firstPlayer; add correct answer by secondPlayer; add incorrect answer by secondPlayer; add incorrect answer by secondPlayer; add incorrect answer by secondPlayer; add incorrect answer by secondPlayer; add correct answer by firstPlayer; add incorrect answer by firstPlayer; add incorrect answer by firstPlayer; draw with 2 scores; ; status 200;
+failed
+0.241s
+Error:
+
+Expected: success response
+
+Received: Request failed with status code 403
+
+Config:
+ url: pair-game-quiz/pairs/connection
+ method: post
+ response status: 403
+ request body: {}
+ response data: {"message":"User already has an active or pending game","error":"Forbidden","statusCode":403}
+
+
+    at handleTestError (/home/node/dist/auto-test-checker/src/tests/jest/back/testHelpers/handleTestError.ts:24:25)
+    at /home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/public/pairGameTestsFlow.ts:33:91
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at createNewGameTestFlow (/home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/public/pairGameTestsFlow.ts:33:5)
+    at Object.<anonymous> (/home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/public/pairQuizeGame-createConnectGame-describe.ts:189:7)
+Homework 26 > My statistic
+POST -> "/pair-game-quiz/pairs/my-current/answers", GET -> "/pair-game-quiz/pairs", GET -> "/pair-game-quiz/pairs/my-current": create game by user1, connect to the game by user4, then: add correct answer by secondPlayer; add correct answer by secondPlayer; add incorrect answer by firstPlayer; add correct answer by secondPlayer; add correct answer by secondPlayer; add incorrect answer by firstPlayer; add incorrect answer by firstPlayer; add incorrect answer by firstPlayer; add incorrect answer by firstPlayer; add correct answer by secondPlayer; secondPlayer should win, scores: 5 - 0; no one got an extra point; ; status 200;
+failed
+0.234s
+Error:
+
+Expected: success response
+
+Received: Request failed with status code 403
+
+Config:
+ url: pair-game-quiz/pairs/connection
+ method: post
+ response status: 403
+ request body: {}
+ response data: {"message":"User already has an active or pending game","error":"Forbidden","statusCode":403}
+
+
+    at handleTestError (/home/node/dist/auto-test-checker/src/tests/jest/back/testHelpers/handleTestError.ts:24:25)
+    at /home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/public/pairGameTestsFlow.ts:33:91
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at createNewGameTestFlow (/home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/public/pairGameTestsFlow.ts:33:5)
+    at Object.<anonymous> (/home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/public/pairQuizeGame-createConnectGame-describe.ts:189:7)
+Homework 26 > My statistic
+POST -> "/pair-game-quiz/pairs/my-current/answers", GET -> "/pair-game-quiz/pairs", GET -> "/pair-game-quiz/pairs/my-current": create game by user4, connect to the game by user1, then: add correct answer by secondPlayer; add correct answer by secondPlayer; add incorrect answer by firstPlayer; add correct answer by secondPlayer; add correct answer by secondPlayer; add incorrect answer by firstPlayer; add incorrect answer by firstPlayer; add incorrect answer by firstPlayer; add incorrect answer by firstPlayer; add correct answer by secondPlayer; secondPlayer should win, scores: 5 - 0; no one got an extra point; ; status 200;
+failed
+0.489s
+Error:
+
+Expected: success response
+
+Received: Request failed with status code 403
+
+Config:
+ url: pair-game-quiz/pairs/connection
+ method: post
+ response status: 403
+ request body: {}
+ response data: {"message":"User already has an active or pending game","error":"Forbidden","statusCode":403}
+
+
+    at handleTestError (/home/node/dist/auto-test-checker/src/tests/jest/back/testHelpers/handleTestError.ts:24:25)
+    at /home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/public/pairGameTestsFlow.ts:55:22
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at connectToExistingGameTestFlow (/home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/public/pairGameTestsFlow.ts:54:5)
+    at Object.<anonymous> (/home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/public/pairQuizeGame-createConnectGame-describe.ts:194:26)
+Homework 26 > My statistic
+POST -> "/pair-game-quiz/pairs/my-current/answers", GET -> "/pair-game-quiz/pairs", GET -> "/pair-game-quiz/pairs/my-current": create game by user2, connect to the game by user4, then: add correct answer by firstPlayer; add incorrect answer by firstPlayer; add correct answer by secondPlayer; add incorrect answer by secondPlayer; add incorrect answer by secondPlayer; add incorrect answer by secondPlayer; add incorrect answer by secondPlayer; add correct answer by firstPlayer; add correct answer by firstPlayer; add incorrect answer by firstPlayer; firstPlayer should win, scores: 3 - 2; ; status 200;
+failed
+0.229s
+Error:
+
+Expected: success response
+
+Received: Request failed with status code 403
+
+Config:
+ url: pair-game-quiz/pairs/connection
+ method: post
+ response status: 403
+ request body: {}
+ response data: {"message":"User already has an active or pending game","error":"Forbidden","statusCode":403}
+
+
+    at handleTestError (/home/node/dist/auto-test-checker/src/tests/jest/back/testHelpers/handleTestError.ts:24:25)
+    at /home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/public/pairGameTestsFlow.ts:33:91
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at createNewGameTestFlow (/home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/public/pairGameTestsFlow.ts:33:5)
+    at Object.<anonymous> (/home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/public/pairQuizeGame-createConnectGame-describe.ts:189:7)
+Homework 26 > My statistic
+GET -> "/pair-game-quiz/users/my-statistic": should return status 200; content: current user's games statistic;
+failed
+0.219s
+Error:
+
+Expected: success response
+
+Received: Request failed with status code 404
+
+Config:
+ url: pair-game-quiz/users/my-statistic
+ method: get
+ response status: 404
+ request body: undefined
+ response data: {"message":"Cannot GET /pair-game-quiz/users/my-statistic","error":"Not Found","statusCode":404}
+
+
+    at handleTestError (/home/node/dist/auto-test-checker/src/tests/jest/back/testHelpers/handleTestError.ts:24:25)
+    at /home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/public/pairQuizGame-myStatistic-describe.ts:44:35
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at Object.<anonymous> (/home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/public/pairQuizGame-myStatistic-describe.ts:43:40)

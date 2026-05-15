@@ -12,16 +12,13 @@ import { CoreConfig } from './core/core.config';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import { APP_GUARD } from '@nestjs/core';
 
+const isTesting = process.env.NODE_ENV === 'testing';
+
 @Module({
   imports: [
     configModule,
-    CoreModule, //запускает конфиг вообще везде за счет @Global
-    // ThrottlerModule.forRoot([
-    //   {
-    //     ttl: 10000, // 10 секунд
-    //     limit: 5, // максимум 5 запросов
-    //   },
-    // ]),
+    CoreModule,
+    ...(isTesting ? [TestingModule] : []),
     TypeOrmModule.forRootAsync({
       useFactory: (coreConfig: CoreConfig) => {
         return {

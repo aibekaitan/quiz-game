@@ -6,6 +6,7 @@ import { QuizGame } from './domain/quiz-game.entity';
 import { QuizPlayerProgress, QuizAnswer } from './domain/quiz-player-progress.entity';
 import { SAQuizQuestionsController } from './api/sa-quiz-questions.controller';
 import { PublicQuizGameController } from './api/public-quiz-game.controller';
+import { PublicQuizUsersController } from './api/public-quiz-users.controller';
 import { QuizQuestionsRepository } from './infrastructure/quiz-questions.repository';
 import { QuizQuestionsQueryRepository } from './infrastructure/quiz-questions.query-repository';
 import { QuizGameRepository } from './infrastructure/quiz-game.repository';
@@ -19,6 +20,8 @@ import { JoinOrCreateGameHandler } from './application/usecases/game/join-or-cre
 import { GetCurrentGameHandler } from './application/usecases/game/get-current-game.handler';
 import { GetGameByIdHandler } from './application/usecases/game/get-game-by-id.handler';
 import { SubmitAnswerHandler } from './application/usecases/game/submit-answer.handler';
+import { GetMyGamesHandler } from './application/usecases/game/get-my-games.handler';
+import { GetMyStatisticHandler } from './application/usecases/game/get-my-statistic.handler';
 import { UserAccountsModule } from '../user-accounts/user-accounts.module';
 import { PassportModule } from '@nestjs/passport';
 
@@ -32,6 +35,8 @@ const handlers = [
   GetCurrentGameHandler,
   GetGameByIdHandler,
   SubmitAnswerHandler,
+  GetMyGamesHandler,
+  GetMyStatisticHandler,
 ];
 
 const repositories = [
@@ -53,7 +58,11 @@ const repositories = [
     UserAccountsModule,
     PassportModule.register({ defaultStrategy: 'jwt' }),
   ],
-  controllers: [SAQuizQuestionsController, PublicQuizGameController],
+  controllers: [
+    SAQuizQuestionsController,
+    PublicQuizGameController,
+    PublicQuizUsersController,
+  ],
   providers: [...repositories, ...handlers],
   exports: [TypeOrmModule],
 })
