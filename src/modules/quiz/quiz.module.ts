@@ -22,6 +22,7 @@ import { GetGameByIdHandler } from './application/usecases/game/get-game-by-id.h
 import { SubmitAnswerHandler } from './application/usecases/game/submit-answer.handler';
 import { GetMyGamesHandler } from './application/usecases/game/get-my-games.handler';
 import { GetMyStatisticHandler } from './application/usecases/game/get-my-statistic.handler';
+import { GetTopUsersHandler } from './application/usecases/game/get-top-users.handler';
 import { UserAccountsModule } from '../user-accounts/user-accounts.module';
 import { PassportModule } from '@nestjs/passport';
 
@@ -37,6 +38,7 @@ const handlers = [
   SubmitAnswerHandler,
   GetMyGamesHandler,
   GetMyStatisticHandler,
+  GetTopUsersHandler,
 ];
 
 const repositories = [

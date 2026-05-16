@@ -1,0 +1,110 @@
+Test Report
+Started: 2026-05-15 19:17:13
+Suites (1)
+0 passed
+1 failed
+0 pending
+Tests (17)
+16 passed
+1 failed
+0 pending
+/home/node/dist/auto-test-checker/dist/tests/jest/back/back-v3-27-homework-01/quiz-game-top-players-flow.spec.js
+55.545s
+Homework 27 > Top players
+DELETE -> "/testing/all-data": should remove all data; status 204;
+passed
+0.571s
+Homework 27 > Top players
+POST -> "/sa/quiz/questions", PUT -> "/sa/quiz/questions/:questionId/publish": should create and publish several questions; status 201; content: created question;
+passed
+2.402s
+Homework 27 > Top players
+POST -> "/sa/users", "/auth/login": should create and login 5 users; status 201; content: created users;
+passed
+8.114s
+Homework 27 > Top players
+POST -> "/pair-game-quiz/pairs/my-current/answers", GET -> "/pair-game-quiz/pairs", GET -> "/pair-game-quiz/pairs/my-current": create game by user1, connect to the game by user2, then: add correct answer by firstPlayer; add incorrect answer by firstPlayer; add correct answer by secondPlayer; add incorrect answer by secondPlayer; add incorrect answer by secondPlayer; add incorrect answer by secondPlayer; add incorrect answer by secondPlayer; add correct answer by firstPlayer; add correct answer by firstPlayer; add incorrect answer by firstPlayer; firstPlayer should win, scores: 3 - 2; ; status 200;
+passed
+3.151s
+Homework 27 > Top players
+POST -> "/pair-game-quiz/pairs/my-current/answers", GET -> "/pair-game-quiz/pairs", GET -> "/pair-game-quiz/pairs/my-current": create game by user1, connect to the game by user2, then: add correct answer by firstPlayer; add incorrect answer by firstPlayer; add correct answer by secondPlayer; add incorrect answer by secondPlayer; add incorrect answer by secondPlayer; add incorrect answer by secondPlayer; add incorrect answer by secondPlayer; add correct answer by firstPlayer; add correct answer by firstPlayer; add incorrect answer by firstPlayer; firstPlayer should win, scores: 3 - 2; ; status 200;
+passed
+3.082s
+Homework 27 > Top players
+POST -> "/pair-game-quiz/pairs/my-current/answers", GET -> "/pair-game-quiz/pairs", GET -> "/pair-game-quiz/pairs/my-current": create game by user2, connect to the game by user1, then: add correct answer by firstPlayer; add incorrect answer by firstPlayer; add correct answer by secondPlayer; add incorrect answer by secondPlayer; add incorrect answer by secondPlayer; add incorrect answer by secondPlayer; add incorrect answer by secondPlayer; add correct answer by firstPlayer; add correct answer by firstPlayer; add incorrect answer by firstPlayer; firstPlayer should win, scores: 3 - 2; ; status 200;
+passed
+3.125s
+Homework 27 > Top players
+POST -> "/pair-game-quiz/pairs/my-current/answers", GET -> "/pair-game-quiz/pairs", GET -> "/pair-game-quiz/pairs/my-current": create game by user2, connect to the game by user1, then: add correct answer by firstPlayer; add incorrect answer by firstPlayer; add correct answer by secondPlayer; add incorrect answer by secondPlayer; add incorrect answer by secondPlayer; add incorrect answer by secondPlayer; add incorrect answer by secondPlayer; add correct answer by firstPlayer; add correct answer by firstPlayer; add incorrect answer by firstPlayer; firstPlayer should win, scores: 3 - 2; ; status 200;
+passed
+3.143s
+Homework 27 > Top players
+POST -> "/pair-game-quiz/pairs/my-current/answers", GET -> "/pair-game-quiz/pairs", GET -> "/pair-game-quiz/pairs/my-current": create game by user1, connect to the game by user3, then: add correct answer by firstPlayer; add incorrect answer by firstPlayer; add correct answer by secondPlayer; add incorrect answer by secondPlayer; add incorrect answer by secondPlayer; add incorrect answer by secondPlayer; add incorrect answer by secondPlayer; add correct answer by firstPlayer; add incorrect answer by firstPlayer; add incorrect answer by firstPlayer; draw with 2 scores; ; status 200;
+passed
+3.13s
+Homework 27 > Top players
+POST -> "/pair-game-quiz/pairs/my-current/answers", GET -> "/pair-game-quiz/pairs", GET -> "/pair-game-quiz/pairs/my-current": create game by user1, connect to the game by user4, then: add correct answer by secondPlayer; add correct answer by secondPlayer; add incorrect answer by firstPlayer; add correct answer by secondPlayer; add correct answer by secondPlayer; add incorrect answer by firstPlayer; add incorrect answer by firstPlayer; add incorrect answer by firstPlayer; add incorrect answer by firstPlayer; add correct answer by secondPlayer; secondPlayer should win, scores: 5 - 0; no one got an extra point; ; status 200;
+passed
+3.262s
+Homework 27 > Top players
+POST -> "/pair-game-quiz/pairs/my-current/answers", GET -> "/pair-game-quiz/pairs", GET -> "/pair-game-quiz/pairs/my-current": create game by user4, connect to the game by user1, then: add correct answer by secondPlayer; add correct answer by secondPlayer; add incorrect answer by firstPlayer; add correct answer by secondPlayer; add correct answer by secondPlayer; add incorrect answer by firstPlayer; add incorrect answer by firstPlayer; add incorrect answer by firstPlayer; add incorrect answer by firstPlayer; add correct answer by secondPlayer; secondPlayer should win, scores: 5 - 0; no one got an extra point; ; status 200;
+passed
+3.221s
+Homework 27 > Top players
+POST -> "/pair-game-quiz/pairs/my-current/answers", GET -> "/pair-game-quiz/pairs", GET -> "/pair-game-quiz/pairs/my-current": create game by user2, connect to the game by user4, then: add correct answer by firstPlayer; add incorrect answer by firstPlayer; add correct answer by secondPlayer; add incorrect answer by secondPlayer; add incorrect answer by secondPlayer; add incorrect answer by secondPlayer; add incorrect answer by secondPlayer; add correct answer by firstPlayer; add correct answer by firstPlayer; add incorrect answer by firstPlayer; firstPlayer should win, scores: 3 - 2; ; status 200;
+passed
+3.163s
+Homework 27 > Top players
+POST -> "/pair-game-quiz/pairs/my-current/answers", GET -> "/pair-game-quiz/pairs", GET -> "/pair-game-quiz/pairs/my-current": create game by user3, connect to the game by user4, then: add correct answer by firstPlayer; add incorrect answer by firstPlayer; add correct answer by secondPlayer; add incorrect answer by secondPlayer; add incorrect answer by secondPlayer; add incorrect answer by secondPlayer; add incorrect answer by secondPlayer; add correct answer by firstPlayer; add correct answer by firstPlayer; add incorrect answer by firstPlayer; firstPlayer should win, scores: 3 - 2; ; status 200;
+passed
+3.073s
+Homework 27 > Top players
+POST -> "/pair-game-quiz/pairs/my-current/answers", GET -> "/pair-game-quiz/pairs", GET -> "/pair-game-quiz/pairs/my-current": create game by user1, connect to the game by user5, then: add correct answer by secondPlayer; add correct answer by secondPlayer; add incorrect answer by firstPlayer; add correct answer by secondPlayer; add correct answer by secondPlayer; add incorrect answer by firstPlayer; add incorrect answer by firstPlayer; add incorrect answer by firstPlayer; add incorrect answer by firstPlayer; add correct answer by secondPlayer; secondPlayer should win, scores: 5 - 0; no one got an extra point; ; status 200;
+passed
+3.132s
+Homework 27 > Top players
+POST -> "/pair-game-quiz/pairs/my-current/answers", GET -> "/pair-game-quiz/pairs", GET -> "/pair-game-quiz/pairs/my-current": create game by user2, connect to the game by user5, then: add correct answer by secondPlayer; add correct answer by secondPlayer; add incorrect answer by firstPlayer; add correct answer by secondPlayer; add correct answer by secondPlayer; add incorrect answer by firstPlayer; add incorrect answer by firstPlayer; add incorrect answer by firstPlayer; add incorrect answer by firstPlayer; add correct answer by secondPlayer; secondPlayer should win, scores: 5 - 0; no one got an extra point; ; status 200;
+passed
+3.083s
+Homework 27 > Top players
+POST -> "/pair-game-quiz/pairs/my-current/answers", GET -> "/pair-game-quiz/pairs", GET -> "/pair-game-quiz/pairs/my-current": create game by user5, connect to the game by user3, then: add correct answer by firstPlayer; add incorrect answer by firstPlayer; add correct answer by secondPlayer; add incorrect answer by secondPlayer; add incorrect answer by secondPlayer; add incorrect answer by secondPlayer; add incorrect answer by secondPlayer; add correct answer by firstPlayer; add correct answer by firstPlayer; add incorrect answer by firstPlayer; firstPlayer should win, scores: 3 - 2; ; status 200;
+passed
+3.107s
+Homework 27 > Top players
+POST -> "/pair-game-quiz/pairs/my-current/answers", GET -> "/pair-game-quiz/pairs", GET -> "/pair-game-quiz/pairs/my-current": create game by user1, connect to the game by user3, then: add correct answer by firstPlayer; add incorrect answer by firstPlayer; add correct answer by secondPlayer; add incorrect answer by secondPlayer; add incorrect answer by secondPlayer; add incorrect answer by secondPlayer; add incorrect answer by secondPlayer; add correct answer by firstPlayer; add correct answer by firstPlayer; add incorrect answer by firstPlayer; firstPlayer should win, scores: 3 - 2; ; status 200;
+passed
+3.262s
+Homework 27 > Top players
+GET -> "/pair-game-quiz/users/top": expected statistics: user1: {"gamesCount":9,"winsCount":4,"lossesCount":4,"drawsCount":1,"sumScore":20,"avgScores":2.22}; user2: {"gamesCount":6,"winsCount":3,"lossesCount":3,"drawsCount":0,"sumScore":13,"avgScores":2.17}; user3: {"gamesCount":4,"winsCount":1,"lossesCount":2,"drawsCount":1,"sumScore":9,"avgScores":2.25}; user4: {"gamesCount":4,"winsCount":1,"lossesCount":3,"drawsCount":0,"sumScore":9,"avgScores":2.25}; user5: {"gamesCount":3,"winsCount":3,"lossesCount":0,"drawsCount":0,"sumScore":13,"avgScores":4.33}; status 200; content: list of top players;
+failed
+0.283s
+Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: 200
+Received: 404
+    at performQueryParamsChecker (/home/node/dist/auto-test-checker/src/tests/jest/back/testHelpers/performCheckers.ts:104:20)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at Object.<anonymous> (/home/node/dist/auto-test-checker/src/tests/jest/back/describes/quiz/public/pairQuizGame-top-players-describe.ts:85:7)
+
+  > Homework 27  Top players  GET -> "/pair-game-quiz/users/top": expected statistics:
+      user1: {"gamesCount":9,"winsCount":4,"lossesCount":4,"drawsCount":1,"sumScore":20,"avgScores":2.22};
+      user2: {"gamesCount":6,"winsCount":3,"lossesCount":3,"drawsCount":0,"sumScore":13,"avgScores":2.17};
+      user3: {"gamesCount":4,"winsCount":1,"lossesCount":2,"drawsCount":1,"sumScore":9,"avgScores":2.25};
+      user4: {"gamesCount":4,"winsCount":1,"lossesCount":3,"drawsCount":0,"sumScore":9,"avgScores":2.25};
+      user5: {"gamesCount":3,"winsCount":3,"lossesCount":0,"drawsCount":0,"sumScore":13,"avgScores":4.33}; status 200; content: list of top players;
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 200
+    Received: 404
+
+      102 |     }
+      103 |
+    > 104 |     expect(status).toBe(expectedStatusCode);
+          |                    ^
+      105 |
+      106 |     if (expectedData) {
+      107 |       expect(data).toBeEqualWithQueryParams(expectedData, queryParams, withDiffPrint);
+
+      at performQueryParamsChecker (src/tests/jest/back/testHelpers/performCheckers.ts:104:20)
+      at Object.<anonymous> (src/tests/jest/back/describes/quiz/public/pairQuizGame-top-players-describe.ts:85:7)

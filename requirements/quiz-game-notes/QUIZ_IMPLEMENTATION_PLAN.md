@@ -42,11 +42,15 @@ Implement a Quiz Game module featuring a Super Admin (SA) question management sy
     - **Completion Logic:** Award +1 bonus point to the player who finished all 5 questions first (if they have ≥1 correct answer). - [DONE]
 
 ### Phase 4: HW2 Features & Bug Fixes - [DONE]
-1. **Game History (`/pairs/my`):** Implement paginated list of games with complex sorting (status then pairCreatedDate DESC). - [DONE]
-2. **User Statistics (`/users/my-statistic`):** Implement aggregation for wins, losses, draws, sumScore, and avgScores (rounded to 2 decimal places). - [DONE]
-3. **Question Ordering Fix:** Ensure questions are always sorted by ID in both handler and view model to prevent sequence mismatch. - [DONE]
+...
 4. **E2E Setup:** Ensure `TestingModule` is included in `AppModule` when `NODE_ENV=testing` to enable reliable database cleanup. - [DONE]
+
+### Phase 5: HW3 Features & Optimization - [DONE]
+1. **Top Users (`/users/top`):** Implement leaderboard with complex aggregation across all finished games. - [DONE]
+2. **Multi-criteria Sorting:** Support `sort` query parameter as an array of strings (e.g., `?sort=avgScores desc&sort=sumScore desc`). - [DONE]
+3. **Statistical Integrity:** Calculate `sumScore`, `avgScores`, `gamesCount`, `winsCount`, `lossesCount`, and `drawsCount` accurately using subqueries and grouping. - [DONE]
+4. **Performance:** Use optimized SQL joins and raw results for statistics aggregation to handle large datasets efficiently. - [DONE]
 
 ## Verification & Testing
 1. **Manual Verification:** All endpoints verified via Swagger/Postman. - [DONE]
-2. **E2E Tests:** `quiz.e2e-spec.ts`, `sa-quiz.e2e-spec.ts`, and `quiz-hw2.e2e-spec.ts` all passing. - [DONE]
+2. **E2E Tests:** `quiz.e2e-spec.ts`, `sa-quiz.e2e-spec.ts`, `quiz-hw2.e2e-spec.ts`, and `quiz-hw3.e2e-spec.ts` all passing. - [DONE]

@@ -9,11 +9,112 @@ import {
 import { QuizPlayerProgress } from '../domain/quiz-player-progress.entity';
 import { MyGamesQueryParams } from '../api/dto/my-games-query.dto';
 import { MyStatisticViewModel } from '../api/dto/my-statistic.view-dto';
+import { TopUsersQueryParams } from '../api/dto/top-users-query.dto';
+import { TopGamePlayerViewModel } from '../api/dto/top-game-player.view-dto';
 import { Paginator } from '../../../core/types/paginator';
 
 @Injectable()
 export class QuizGameQueryRepository {
   constructor(private readonly dataSource: DataSource) {}
+
+  async getTopUsers(queryParams: TopUsersQueryParams): Promise<Paginator<TopGamePlayerViewModel>> {
+    const { sort, pageNumber, pageSize } = queryParams;
+
+    const queryBuilder = this.dataSource
+      .getRepository(QuizPlayerProgress)
+      .createQueryBuilder('p')
+      .innerJoin('quiz_games', 'g', 'p.id = g."firstPlayerProgressId" OR p.id = g."secondPlayerProgressId"')
+      .leftJoin('p.user', 'u')
+      .select('u.id', 'id')
+      .addSelect('u.login', 'login')
+      .addSelect('SUM(p.score)', 'sumScore')
+      .addSelect('COUNT(g.id)', 'gamesCount')
+      .addSelect('AVG(p.score)::numeric', 'avgScores')
+      // Wins: My score > Opponent's score. 
+      .addSelect(
+          (subQuery) => {
+              return subQuery
+                  .select('COUNT(*)')
+                  .from('quiz_player_progress', 'p2')
+                  .innerJoin('quiz_games', 'g2', 'p2."id" = g2."firstPlayerProgressId" OR p2."id" = g2."secondPlayerProgressId"')
+                  .innerJoin('quiz_player_progress', 'p_opp', '(p_opp."id" = g2."firstPlayerProgressId" OR p_opp."id" = g2."secondPlayerProgressId") AND p_opp."id" != p2."id"')
+                  .where('p2."userId" = u.id')
+                  .andWhere('g2.status = :status', { status: GameStatus.FINISHED })
+                  .andWhere('p2.score > p_opp.score');
+          },
+          'winsCount'
+      )
+      .addSelect(
+          (subQuery) => {
+              return subQuery
+                  .select('COUNT(*)')
+                  .from('quiz_player_progress', 'p2')
+                  .innerJoin('quiz_games', 'g2', 'p2."id" = g2."firstPlayerProgressId" OR p2."id" = g2."secondPlayerProgressId"')
+                  .innerJoin('quiz_player_progress', 'p_opp', '(p_opp."id" = g2."firstPlayerProgressId" OR p_opp."id" = g2."secondPlayerProgressId") AND p_opp."id" != p2."id"')
+                  .where('p2."userId" = u.id')
+                  .andWhere('g2.status = :status', { status: GameStatus.FINISHED })
+                  .andWhere('p2.score < p_opp.score');
+          },
+          'lossesCount'
+      )
+      .addSelect(
+          (subQuery) => {
+              return subQuery
+                  .select('COUNT(*)')
+                  .from('quiz_player_progress', 'p2')
+                  .innerJoin('quiz_games', 'g2', 'p2."id" = g2."firstPlayerProgressId" OR p2."id" = g2."secondPlayerProgressId"')
+                  .innerJoin('quiz_player_progress', 'p_opp', '(p_opp."id" = g2."firstPlayerProgressId" OR p_opp."id" = g2."secondPlayerProgressId") AND p_opp."id" != p2."id"')
+                  .where('p2."userId" = u.id')
+                  .andWhere('g2.status = :status', { status: GameStatus.FINISHED })
+                  .andWhere('p2.score = p_opp.score');
+          },
+          'drawsCount'
+      )
+      .where('g.status = :finishedStatus', { finishedStatus: GameStatus.FINISHED })
+      .groupBy('u.id')
+      .addGroupBy('u.login');
+
+    // Handle multi-criteria sorting
+    const sorts = Array.isArray(sort) ? sort : [sort];
+    sorts.forEach((s) => {
+      const [field, direction] = s.split(' ');
+      queryBuilder.addOrderBy(`"${field}"`, direction.toUpperCase() as 'ASC' | 'DESC');
+    });
+
+    const rawResults = await queryBuilder
+      .offset((pageNumber - 1) * pageSize)
+      .limit(pageSize)
+      .getRawMany();
+
+    const totalCountResult = await this.dataSource
+        .getRepository(QuizPlayerProgress)
+        .createQueryBuilder('p')
+        .innerJoin('quiz_games', 'g', 'p.id = g."firstPlayerProgressId" OR p.id = g."secondPlayerProgressId"')
+        .where('g.status = :status', { status: GameStatus.FINISHED })
+        .select('COUNT(DISTINCT p."userId")', 'count')
+        .getRawOne();
+    
+    const totalCount = parseInt(totalCountResult.count, 10);
+
+    return {
+      pagesCount: Math.ceil(totalCount / pageSize),
+      page: pageNumber,
+      pageSize: pageSize,
+      totalCount: totalCount,
+      items: rawResults.map((r) => ({
+        sumScore: parseInt(r.sumScore, 10),
+        avgScores: Math.round(parseFloat(r.avgScores) * 100) / 100,
+        gamesCount: parseInt(r.gamesCount, 10),
+        winsCount: parseInt(r.winsCount, 10),
+        lossesCount: parseInt(r.lossesCount, 10),
+        drawsCount: parseInt(r.drawsCount, 10),
+        player: {
+          id: r.id,
+          login: r.login,
+        },
+      })),
+    };
+  }
 
   async getMyGames(userId: string, queryParams: MyGamesQueryParams): Promise<Paginator<GameViewModel>> {
     const { pageNumber, pageSize, sortBy, sortDirection } = queryParams;
