@@ -46,11 +46,15 @@ Implement a Quiz Game module featuring a Super Admin (SA) question management sy
 4. **E2E Setup:** Ensure `TestingModule` is included in `AppModule` when `NODE_ENV=testing` to enable reliable database cleanup. - [DONE]
 
 ### Phase 5: HW3 Features & Optimization - [DONE]
-1. **Top Users (`/users/top`):** Implement leaderboard with complex aggregation across all finished games. - [DONE]
-2. **Multi-criteria Sorting:** Support `sort` query parameter as an array of strings (e.g., `?sort=avgScores desc&sort=sumScore desc`). - [DONE]
-3. **Statistical Integrity:** Calculate `sumScore`, `avgScores`, `gamesCount`, `winsCount`, `lossesCount`, and `drawsCount` accurately using subqueries and grouping. - [DONE]
+...
 4. **Performance:** Use optimized SQL joins and raw results for statistics aggregation to handle large datasets efficiently. - [DONE]
+
+### Phase 6: HW4 Features & Auto-Completion - [DONE]
+1. **10-second Rule:** Record `firstFinisherDate` when the first player completes all 5 questions. - [DONE]
+2. **Auto-Completion:** Implement lazy check in all relevant endpoints (`/answers`, `/my-current`, `/:id`, `/my`, `/my-statistic`, `/top`) to finish games where the 10-second window has expired. - [DONE]
+3. **Ghost Answers:** Automatically fill missing answers with `Incorrect` status for slow players when a game is finished. - [DONE]
+4. **Scoring Consistency:** Ensure the faster finisher bonus (+1) is correctly awarded even in auto-finished games (if they have ≥1 correct answer). - [DONE]
 
 ## Verification & Testing
 1. **Manual Verification:** All endpoints verified via Swagger/Postman. - [DONE]
-2. **E2E Tests:** `quiz.e2e-spec.ts`, `sa-quiz.e2e-spec.ts`, `quiz-hw2.e2e-spec.ts`, and `quiz-hw3.e2e-spec.ts` all passing. - [DONE]
+2. **E2E Tests:** `quiz.e2e-spec.ts`, `sa-quiz.e2e-spec.ts`, `quiz-hw2.e2e-spec.ts`, `quiz-hw3.e2e-spec.ts`, and `quiz-hw4.e2e-spec.ts` all passing sequentially. - [DONE]

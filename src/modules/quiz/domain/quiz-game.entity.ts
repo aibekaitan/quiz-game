@@ -46,6 +46,9 @@ export class QuizGame {
   @Column({ type: 'timestamp', nullable: true })
   finishGameDate: Date | null;
 
+  @Column({ type: 'timestamp', nullable: true })
+  firstFinisherDate: Date | null;
+
   static create(firstPlayerProgress: QuizPlayerProgress): QuizGame {
     const game = new QuizGame();
     game.status = GameStatus.PENDING_SECOND_PLAYER;

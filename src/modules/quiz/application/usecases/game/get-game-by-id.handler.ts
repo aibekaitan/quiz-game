@@ -3,6 +3,7 @@ import { QuizGameRepository } from '../../../infrastructure/quiz-game.repository
 import { QuizGameQueryRepository } from '../../../infrastructure/quiz-game.query-repository';
 import { ForbiddenException, NotFoundException, BadRequestException } from '@nestjs/common';
 import { validate as isUuid } from 'uuid';
+import { QuizGameService } from '../../quiz-game.service';
 
 export class GetGameByIdQuery {
   constructor(
@@ -16,6 +17,7 @@ export class GetGameByIdHandler implements IQueryHandler<GetGameByIdQuery> {
   constructor(
     private readonly gameRepository: QuizGameRepository,
     private readonly queryRepository: QuizGameQueryRepository,
+    private readonly gameService: QuizGameService,
   ) {}
 
   async execute(query: GetGameByIdQuery) {
@@ -23,10 +25,12 @@ export class GetGameByIdHandler implements IQueryHandler<GetGameByIdQuery> {
         throw new BadRequestException('Invalid game ID format');
     }
 
-    const game = await this.gameRepository.findById(query.gameId);
+    let game = await this.gameRepository.findById(query.gameId);
     if (!game) {
       throw new NotFoundException('Game not found');
     }
+
+    game = await this.gameService.checkAndFinishGame(game);
 
     const isParticipant =
       game.firstPlayerProgress.userId === query.userId ||

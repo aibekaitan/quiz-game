@@ -4,6 +4,7 @@ import { ForbiddenException, NotFoundException } from '@nestjs/common';
 import { AnswerInputModel } from '../../../api/dto/quiz-game.dto';
 import { GameStatus, QuizGame } from '../../../domain/quiz-game.entity';
 import { QuizAnswer, AnswerStatus } from '../../../domain/quiz-player-progress.entity';
+import { QuizGameService } from '../../quiz-game.service';
 
 export class SubmitAnswerCommand {
   constructor(
@@ -14,31 +15,39 @@ export class SubmitAnswerCommand {
 
 @CommandHandler(SubmitAnswerCommand)
 export class SubmitAnswerHandler implements ICommandHandler<SubmitAnswerCommand> {
-  constructor(private readonly gameRepository: QuizGameRepository) {}
+  constructor(
+    private readonly gameRepository: QuizGameRepository,
+    private readonly gameService: QuizGameService,
+  ) {}
 
   async execute(command: SubmitAnswerCommand) {
     const { userId, dto } = command;
 
     // 1. Find active game for user
-    const game = await this.gameRepository.findActiveGameByUserId(userId);
+    let game = await this.gameRepository.findActiveGameByUserId(userId);
     if (!game || game.status !== GameStatus.ACTIVE) {
       throw new ForbiddenException('User is not in an active game');
     }
 
+    // Check if game is already expired (10s rule)
+    game = await this.gameService.checkAndFinishGame(game);
+    if (game.status === GameStatus.FINISHED) {
+        throw new ForbiddenException('Game is already finished');
+    }
+
     const isFirstPlayer = game.firstPlayerProgress.userId === userId;
     const progress = isFirstPlayer ? game.firstPlayerProgress : game.secondPlayerProgress!;
-    const otherProgress = isFirstPlayer ? game.secondPlayerProgress! : game.firstPlayerProgress;
-
+    
     // 2. Check if user already answered all questions
     if (progress.answers.length >= 5) {
       throw new ForbiddenException('User already answered all questions');
     }
 
     // 3. Determine current question
-    // Ensure questions are sorted the same way as in QueryRepository
     const sortedQuestions = [...game.questions!].sort((a, b) => a.id.localeCompare(b.id));
     const currentQuestionIndex = progress.answers.length;
     const question = sortedQuestions[currentQuestionIndex];
+
     // 4. Validate answer
     const isCorrect = question.correctAnswers.some(
       (ans) => ans && ans.toLowerCase() === (dto.answer || '').toLowerCase(),
@@ -56,47 +65,20 @@ export class SubmitAnswerHandler implements ICommandHandler<SubmitAnswerCommand>
       progress.score += 1;
     }
 
-    // 6. Check if both players finished
-    if (progress.answers.length === 5 && otherProgress.answers.length === 5) {
-      game.status = GameStatus.FINISHED;
-      game.finishGameDate = new Date();
-
-      // Bonus point logic
-      const firstToFinish = this.getFasterPlayer(game);
-      if (firstToFinish) {
-          if (firstToFinish.score > 0 || firstToFinish.answers.some(a => a.answerStatus === AnswerStatus.CORRECT)) {
-              // The player who finished first gets +1 IF they have >=1 correct answer.
-              const hasCorrect = firstToFinish.answers.some(a => a.answerStatus === AnswerStatus.CORRECT);
-              if (hasCorrect) {
-                  firstToFinish.score += 1;
-              }
-          }
-      }
+    // Set first finisher date if not already set and this player just finished
+    if (progress.answers.length === 5 && !game.firstFinisherDate) {
+        game.firstFinisherDate = new Date();
     }
 
     await this.gameRepository.save(game);
+
+    // 6. Check if both players finished or 10s rule applies
+    await this.gameService.checkAndFinishGame(game);
 
     return {
       questionId: answer.questionId,
       answerStatus: answer.answerStatus,
       addedAt: answer.addedAt.toISOString(),
     };
-  }
-
-  private getFasterPlayer(game: QuizGame) {
-      const p1Answers = game.firstPlayerProgress.answers;
-      const p2Answers = game.secondPlayerProgress!.answers;
-
-      if (p1Answers.length !== 5 || p2Answers.length !== 5) return null;
-
-      const p1LastAnswerTime = Math.max(...p1Answers.map(a => a.addedAt.getTime()));
-      const p2LastAnswerTime = Math.max(...p2Answers.map(a => a.addedAt.getTime()));
-
-      if (p1LastAnswerTime < p2LastAnswerTime) {
-          return game.firstPlayerProgress;
-      } else if (p2LastAnswerTime < p1LastAnswerTime) {
-          return game.secondPlayerProgress;
-      }
-      return null; // Both finished at the exact same time (rare)
   }
 }

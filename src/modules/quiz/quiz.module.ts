@@ -11,6 +11,7 @@ import { QuizQuestionsRepository } from './infrastructure/quiz-questions.reposit
 import { QuizQuestionsQueryRepository } from './infrastructure/quiz-questions.query-repository';
 import { QuizGameRepository } from './infrastructure/quiz-game.repository';
 import { QuizGameQueryRepository } from './infrastructure/quiz-game.query-repository';
+import { QuizGameService } from './application/quiz-game.service';
 import { CreateQuestionHandler } from './application/usecases/questions/create-question.handler';
 import { UpdateQuestionHandler } from './application/usecases/questions/update-question.handler';
 import { DeleteQuestionHandler } from './application/usecases/questions/delete-question.handler';
@@ -48,6 +49,8 @@ const repositories = [
   QuizGameQueryRepository,
 ];
 
+const services = [QuizGameService];
+
 @Module({
   imports: [
     TypeOrmModule.forFeature([
@@ -65,7 +68,7 @@ const repositories = [
     PublicQuizGameController,
     PublicQuizUsersController,
   ],
-  providers: [...repositories, ...handlers],
+  providers: [...repositories, ...handlers, ...services],
   exports: [TypeOrmModule],
 })
 export class QuizModule {}

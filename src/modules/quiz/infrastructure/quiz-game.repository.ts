@@ -80,4 +80,18 @@ export class QuizGameRepository {
           ],
       });
   }
+
+  async findAllActiveGamesWithFinisher(): Promise<QuizGame[]> {
+      // Find games that are ACTIVE and have a first finisher date
+      return this.gameRepo
+        .createQueryBuilder('g')
+        .leftJoinAndSelect('g.firstPlayerProgress', 'p1')
+        .leftJoinAndSelect('p1.answers', 'a1')
+        .leftJoinAndSelect('g.secondPlayerProgress', 'p2')
+        .leftJoinAndSelect('p2.answers', 'a2')
+        .leftJoinAndSelect('g.questions', 'q')
+        .where('g.status = :status', { status: GameStatus.ACTIVE })
+        .andWhere('g.firstFinisherDate IS NOT NULL')
+        .getMany();
+  }
 }
